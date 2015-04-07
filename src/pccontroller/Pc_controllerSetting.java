@@ -1,4 +1,4 @@
-package PCcontroller;
+package pccontroller;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

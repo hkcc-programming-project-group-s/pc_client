@@ -1,4 +1,4 @@
-package gameMonitor;
+package gamemonitor;
 
 import javax.swing.JPanel;
 

@@ -1,4 +1,4 @@
-package gameMonitor;
+package gamemonitor;
 
 import javax.swing.JPanel;
 
@@ -16,7 +16,7 @@ import java.awt.Component;
 
 import javax.swing.JSplitPane;
 
-public class DeviceInfoPanel extends JPanel {
+public class DeviceInfoPanel_Old extends JPanel {
 	public static final int NAME_LENGTH = 32;
 	public static final Font MONO_FONT=new Font("Droid Sans Mono", Font.PLAIN, 6);
 	public JLabel deviceName;
@@ -27,7 +27,7 @@ public class DeviceInfoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public DeviceInfoPanel(String name, String ip) {
+	public DeviceInfoPanel_Old(String name, String ip) {
 		while (name.length() + 2 <= NAME_LENGTH)
 			name = " " + name + " ";
 		if (name.length() < NAME_LENGTH)
