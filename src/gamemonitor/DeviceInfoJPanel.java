@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import java.awt.GridLayout;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.swing.JComboBox;
 
@@ -38,12 +39,14 @@ public class DeviceInfoJPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
-	public DeviceInfoJPanel(String deviceType, String ip, String name) {
+	public DeviceInfoJPanel(byte deviceType, String ip, String name) throws MalformedURLException, IOException {
 		setup();
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-		JLabel lblIcon = new JLabel(ROBOT_UNCLASSED);
+		JLabel lblIcon = new JLabel(MyImages.getIconByDeviceType(deviceType));
 		add(lblIcon);
 
 		JPanel panel = new JPanel();

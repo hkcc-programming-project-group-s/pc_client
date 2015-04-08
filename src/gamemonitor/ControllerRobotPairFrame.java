@@ -76,9 +76,9 @@ public class ControllerRobotPairFrame extends JFrame {
 		controlrobot_panel.add(controller_panel);
 		
 		DefaultListModel<DeviceInfoJPanel> controllerModel=new DefaultListModel<DeviceInfoJPanel>();
-		controllerModel.addElement(new DeviceInfoJPanel("", "192.168.1.3", "Robot1"));
-		controllerModel.addElement(new DeviceInfoJPanel("", "192.168.1.1", "Robot2"));
-		controllerModel.addElement(new DeviceInfoJPanel("", "192.168.1.2", "Robot3"));
+		controllerModel.addElement(new DeviceInfoJPanel( (byte) 0, "192.168.1.3", "Robot1"));
+		controllerModel.addElement(new DeviceInfoJPanel(null,"", "192.168.1.1", "Robot2"));
+		controllerModel.addElement(new DeviceInfoJPanel(null,"", "192.168.1.2", "Robot3"));
 		JList controllerList = new JList(controllerModel);
 		controllerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		controller_panel.add(controllerList);		
@@ -111,21 +111,5 @@ public class ControllerRobotPairFrame extends JFrame {
 		JButton btnNewButton = new JButton("Remove Pair");
 		btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel_paired.add(btnNewButton);
-		
-		JPanel panel_boton = new JPanel();
-		contentPane.add(panel_boton, BorderLayout.SOUTH);
-		
-		JButton clearButton = new JButton("Clear");
-		clearButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		panel_boton.add(clearButton);
-		
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		panel_boton.add(horizontalStrut);
-		
-		JButton nextButton = new JButton("Next");
-		panel_boton.add(nextButton);
 	}
 }

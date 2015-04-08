@@ -3,6 +3,7 @@
 	<name>PacmanRobot</name>
 	<comment></comment>
 	<projects>
+		<project>java-myutils</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
