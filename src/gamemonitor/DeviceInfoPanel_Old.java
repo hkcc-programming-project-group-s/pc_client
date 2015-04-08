@@ -49,12 +49,12 @@ public class DeviceInfoPanel_Old extends JPanel {
 		splitPane.setLeftComponent(splitPaneLeft);
 		splitPane.setRightComponent(splitPaneRight);
 
-		JSplitPane splitPaneIconAndInfo = new JSplitPane();
+		/*JSplitPane splitPaneIconAndInfo = new JSplitPane();
 		splitPaneIconAndInfo.setLeftComponent(splitPaneLeft);//TODO change it
-		splitPaneIconAndInfo.setRightComponent(splitPane);
+		splitPaneIconAndInfo.setRightComponent(splitPane);*/
 
 
-		add(splitPaneIconAndInfo);
+		add(splitPane);
 
 		// splitPane.add(deviceName);
 		// splitPane.add(deviceIp);

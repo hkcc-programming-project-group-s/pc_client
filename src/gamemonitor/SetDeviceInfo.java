@@ -19,6 +19,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import javax.swing.Box;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SetDeviceInfo extends JFrame {
 
@@ -96,16 +98,13 @@ public class SetDeviceInfo extends JFrame {
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		panel_bottom.add(horizontalGlue_1);
 		
-		JButton btnNewButton = new JButton("Reset");
-		btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel_bottom.add(btnNewButton);
-		
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		panel_bottom.add(horizontalStrut);
-		
-		JButton btnNewButton_1 = new JButton("Next");
-		btnNewButton_1.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel_bottom.add(btnNewButton_1);
+		JButton deletButton = new JButton("Delet");
+		deletButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		deletButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panel_bottom.add(deletButton);
 		
 		Component horizontalGlue = Box.createHorizontalGlue();
 		panel_bottom.add(horizontalGlue);
