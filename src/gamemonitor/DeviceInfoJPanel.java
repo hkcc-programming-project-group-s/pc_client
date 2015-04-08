@@ -10,18 +10,25 @@ import java.io.IOException;
 
 import javax.swing.JComboBox;
 
+import pacmanrobot.MyImages;
 import pacmanrobot.Utils;
 
 public class DeviceInfoJPanel extends JPanel {
 	public static boolean setup = false;
 	public static ImageIcon ROBOT_UNCLASSED;
+	public static ImageIcon ROBOT_STUDENT;
+	public static ImageIcon ROBOT_DEADLINE;
+	public static ImageIcon ROBOT_ASSIGNMENT;
 
 	public static void setup() {
 		if (setup)
 			return;
 		try {
 			ROBOT_UNCLASSED = Utils
-					.getImageIcon("https://dl.dropboxusercontent.com/u/13757442/htm/robocode-tank.png");
+					.getImageIcon(MyImages.ROBOT_UNCLASSED);
+			ROBOT_STUDENT = Utils.getImageIcon(MyImages.ROBOT_STUDENT);
+			ROBOT_DEADLINE = Utils.getImageIcon(MyImages.ROBOT_DEADLINE);
+			ROBOT_ASSIGNMENT = Utils.getImageIcon(MyImages.ROBOT_ASSIGNMENT);
 		} catch (IOException e) {
 			// Cannot load image
 			e.printStackTrace();

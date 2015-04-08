@@ -1,20 +1,16 @@
 package gamemonitor;
 
-import javax.swing.JPanel;
+import pacmanrobot.Utils;
+
+import javax.swing.*;
 
 import java.awt.BorderLayout;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.BoxLayout;
 
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Component;
-
-import javax.swing.JSplitPane;
+import java.io.IOException;
 
 public class DeviceInfoPanel_Old extends JPanel {
 	public static final int NAME_LENGTH = 32;
@@ -23,6 +19,9 @@ public class DeviceInfoPanel_Old extends JPanel {
 	public JLabel deviceIp;
 	public JButton editButton = new JButton("Edit");
 	public JButton removeButton = new JButton("Remove");
+	public static ImageIcon studentRobotIcon;
+	public static ImageIcon deadlineRobotIcon;
+	public static ImageIcon assignmentRobotIcon;
 
 	/**
 	 * Create the panel.
@@ -36,7 +35,8 @@ public class DeviceInfoPanel_Old extends JPanel {
 		deviceIp = new JLabel(" "+ip+" ");
 		deviceName.setFont(new Font("Droid Sans Mono", Font.BOLD,deviceName.getFont().getSize()));
 		deviceIp.setFont(new Font("Droid Sans Mono", Font.BOLD,deviceIp.getFont().getSize()));
-		
+
+
 		JSplitPane splitPaneLeft = new JSplitPane();
 		splitPaneLeft.setLeftComponent(deviceName);
 		splitPaneLeft.setRightComponent(deviceIp);
@@ -49,7 +49,12 @@ public class DeviceInfoPanel_Old extends JPanel {
 		splitPane.setLeftComponent(splitPaneLeft);
 		splitPane.setRightComponent(splitPaneRight);
 
-		add(splitPane);
+		JSplitPane splitPaneIconAndInfo = new JSplitPane();
+		splitPaneIconAndInfo.setLeftComponent(splitPaneLeft);//TODO change it
+		splitPaneIconAndInfo.setRightComponent(splitPane);
+
+
+		add(splitPaneIconAndInfo);
 
 		// splitPane.add(deviceName);
 		// splitPane.add(deviceIp);
