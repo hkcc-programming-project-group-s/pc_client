@@ -1,4 +1,4 @@
-package gameMonitor;
+package gamemonitor;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -65,9 +65,9 @@ public class MainWindow {
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 	
 		//frame.getContentPane().add(table, BorderLayout.CENTER);
-		DeviceInfoPanel a=new DeviceInfoPanel("Patrick","192.168.1.2");
-		DeviceInfoPanel b=new DeviceInfoPanel("Patrick Controller","192.168.1.1");
-		DeviceInfoPanel c=new DeviceInfoPanel("Physic Assignment","192.168.1.3");
+		DeviceInfoPanel_Old a=new DeviceInfoPanel_Old("Patrick","192.168.1.2");
+		DeviceInfoPanel_Old b=new DeviceInfoPanel_Old("Patrick Controller","192.168.1.1");
+		DeviceInfoPanel_Old c=new DeviceInfoPanel_Old("Physic Assignment","192.168.1.3");
 
 		frame.getContentPane().add(a);
 		frame.getContentPane().add(b);
