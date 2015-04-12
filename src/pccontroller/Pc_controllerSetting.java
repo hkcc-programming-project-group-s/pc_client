@@ -9,11 +9,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.function.Consumer;
 
-public class Pc_controllerSetting extends JFrame {
+import static pccontroller.Pc_controllerSetting.Range.isBetween;
 
+import static java.awt.event.KeyEvent.*;
+
+public class Pc_controllerSetting extends JFrame {
+    Pc_controllerSetting jFrame = this;
     JPanel ballLocation;
     JPanel ballLastLocation;
     boolean setting = false;
@@ -28,10 +33,7 @@ public class Pc_controllerSetting extends JFrame {
      * @throws MalformedURLException
      */
 
-    private int KEY_UP = KeyEvent.VK_UP;
-    private int KEY_DOWN = KeyEvent.VK_DOWN;
-    private int KEY_LEFT = KeyEvent.VK_LEFT;
-    private int KEY_RIGHT = KeyEvent.VK_RIGHT;
+
     private JPanel contentPane;
     private JTextField textField;
     private JTextField textField_1;
@@ -43,14 +45,16 @@ public class Pc_controllerSetting extends JFrame {
     private JLabel leftArrowLbl;
     private JLabel upArrowLbl;
 
+    MyDispatcher myDispatcher = new MyDispatcher();
+
     public Pc_controllerSetting() throws MalformedURLException, IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         KeyboardFocusManager keyboardFocusManager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        keyboardFocusManager.addKeyEventDispatcher(new MyDispatcher());
+        keyboardFocusManager.addKeyEventDispatcher(myDispatcher);
 
-        JPanel panel_center = new JPanel();
+        panel_center = new JPanel();
         getContentPane().add(panel_center, BorderLayout.NORTH);
         GridBagLayout gbl_clockwiseTurmLbl = new GridBagLayout();
         gbl_clockwiseTurmLbl.columnWidths = new int[]{0, 0, 0, 0, 0};
@@ -92,7 +96,14 @@ public class Pc_controllerSetting extends JFrame {
         JButton editNameBtn = new JButton("Edit");
         editNameBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                setting = true;
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(myDispatcher);
+                Object name = JOptionPane.showInputDialog(jFrame, "What is the new name?", "Device Name", JOptionPane.QUESTION_MESSAGE, null, null, null);
+                System.out.println(name);
+                if (name != null) {
+                    controllerNameLbl.setText((String) name);
+                    //TODO message(send new name)
+                }
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myDispatcher);
             }
         });
         GridBagConstraints gbc_editNameBtn = new GridBagConstraints();
@@ -153,7 +164,7 @@ public class Pc_controllerSetting extends JFrame {
         JButton editUpBtn = new JButton("Edit");
         editUpBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_UP;
+                key_to_edit = direction_lable_keys[0];
                 setting = true;
             }
         });
@@ -180,7 +191,7 @@ public class Pc_controllerSetting extends JFrame {
         JButton editDownBtn = new JButton("Edit");
         editDownBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_DOWN;
+                key_to_edit = direction_lable_keys[1];
                 setting = true;
             }
         });
@@ -207,7 +218,7 @@ public class Pc_controllerSetting extends JFrame {
         JButton editLeftBtn = new JButton("Edit");
         editLeftBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_LEFT;
+                key_to_edit = direction_lable_keys[2];
                 setting = true;
             }
         });
@@ -234,7 +245,7 @@ public class Pc_controllerSetting extends JFrame {
         JButton editRightBtn = new JButton("Edit");
         editRightBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_RIGHT;
+                key_to_edit = direction_lable_keys[3];
                 setting = true;
             }
         });
@@ -257,7 +268,56 @@ public class Pc_controllerSetting extends JFrame {
         ballLocation = ballJPanels[1][1];
         ballLocation.add(ball);
 
+
         pack();
+        setLocation(100, 100);
+
+        direction_keys.add(new Range('a', 'z'));
+        direction_keys.add(new Range('0', '9'));
+        direction_keys.add(new Range(KeyEvent.VK_KP_UP));
+        direction_keys.add(new Range(KeyEvent.VK_KP_DOWN));
+        direction_keys.add(new Range(KeyEvent.VK_KP_LEFT));
+        direction_keys.add(new Range(KeyEvent.VK_KP_RIGHT));
+        direction_keys.add(new Range(KeyEvent.VK_UP));
+        direction_keys.add(new Range(KeyEvent.VK_DOWN));
+        direction_keys.add(new Range(KeyEvent.VK_LEFT));
+        direction_keys.add(new Range(KeyEvent.VK_RIGHT));
+        direction_keys.add(new Range(32, 127));
+
+        keyNames.put(VK_UP, "Up Arrow");
+        keyNames.put(VK_DOWN, "Down Arrow");
+        keyNames.put(VK_LEFT, "Left Arrow");
+        keyNames.put(VK_RIGHT, "Right Arrow");
+        keyNames.put(VK_KP_UP, "Keypad Up Arrow");
+        keyNames.put(VK_KP_DOWN, "Keypad Down Arrow");
+        keyNames.put(VK_KP_LEFT, "Keypad Left Arrow");
+        keyNames.put(VK_KP_RIGHT, "Keypad Right Arrow");
+
+        keyNames.put(VK_F1, "F1");
+        keyNames.put(VK_F2, "F2");
+        keyNames.put(VK_F3, "F3");
+        keyNames.put(VK_F4, "F4");
+        keyNames.put(VK_F5, "F5");
+        keyNames.put(VK_F6, "F6");
+        keyNames.put(VK_F7, "F7");
+        keyNames.put(VK_F8, "F8");
+        keyNames.put(VK_F9, "F9");
+        keyNames.put(VK_F10, "F10");
+        keyNames.put(VK_F11, "F11");
+        keyNames.put(VK_F12, "F12");
+
+        keyNames.put(VK_INSERT, "Insert");
+        keyNames.put(VK_HOME, "Home");
+        keyNames.put(VK_PAGE_UP, "Page up");
+        keyNames.put(VK_DELETE, "Delete");
+        keyNames.put(VK_END, "End");
+        keyNames.put(VK_PAGE_DOWN, "Page down");
+
+        direction_lable_keys = new Direction_Lable_Key[4];
+        direction_lable_keys[0] = new Direction_Lable_Key(upArrowLbl, VK_UP);
+        direction_lable_keys[1] = new Direction_Lable_Key(downArrowLbl, VK_DOWN);
+        direction_lable_keys[2] = new Direction_Lable_Key(leftArrowLbl, VK_LEFT);
+        direction_lable_keys[3] = new Direction_Lable_Key(rightArrowLbl, VK_RIGHT);
     }
 
     /**
@@ -276,46 +336,94 @@ public class Pc_controllerSetting extends JFrame {
         });
     }
 
+    static HashMap<Integer, String> keyNames = new HashMap<>();
+
     boolean onKeyPressed(KeyEvent e) {
         if (setting) {
-            if (key_to_edit == KEY_UP) {
-                KEY_UP = e.getKeyCode();
-                upArrowLbl.setText(String.valueOf(e.getKeyChar()));
-            } else if (key_to_edit == KEY_DOWN)
-                KEY_DOWN = e.getKeyCode();
-            else if (key_to_edit == KEY_RIGHT)
-                KEY_RIGHT = e.getKeyCode();
-            else if (key_to_edit == KEY_LEFT)
-                KEY_LEFT = e.getKeyCode();
-            else return false;
+            boolean result;
+            System.out.println(key_to_edit == null);
+            if (key_to_edit != null)
+                result = key_to_edit.updateLabel(e.getKeyCode());
+            else
+                result = false;
             setting = false;
-            return true;
+            return result;
         } else {
-            if (e.getKeyCode() == KEY_UP)
+            if (e.getKeyCode() == direction_lable_keys[0].keycode)
                 y = -1;
-            else if (e.getKeyCode() == KEY_DOWN)
+            else if (e.getKeyCode() == direction_lable_keys[1].keycode)
                 y = 1;
-            else if (e.getKeyCode() == KEY_RIGHT)
-                x = 1;
-            else if (e.getKeyCode() == KEY_LEFT)
+            else if (e.getKeyCode() == direction_lable_keys[2].keycode)
                 x = -1;
+            else if (e.getKeyCode() == direction_lable_keys[3].keycode)
+                x = 1;
             else return false;
             updateBallLocation();
             return true;
         }
     }
 
+    private boolean checking(int keyCode) {
+        return false;
+    }
+
+    public class Direction_Lable_Key {
+        public JLabel label;
+        public int keycode;
+
+        public Direction_Lable_Key(JLabel label, int keycode) {
+            this.label = label;
+            this.keycode = keycode;
+            update();
+        }
+
+        public Direction_Lable_Key getDuplicated(int newVal) {
+            for (Direction_Lable_Key delta : direction_lable_keys) {
+                if (!delta.label.equals(label) && delta.keycode == newVal)
+                    return delta;
+            }
+            return null;
+        }
+
+        public boolean updateLabel(int newVal) {
+            System.out.println("new value: " + newVal);
+            if (!isBetween(newVal, direction_keys)) {
+                System.out.println("not between");
+                return false;
+            }
+            System.out.println("is between");
+            Direction_Lable_Key duplicated = getDuplicated(newVal);
+            int oldVal = keycode;
+            keycode = newVal;
+            update();
+            System.out.println("duplicated="+ duplicated );
+            if (duplicated != null) {
+                duplicated.updateLabel(oldVal);
+            }
+            return true;
+        }
+
+        private void update() {
+            if (keyNames.containsKey(keycode))
+                label.setText(keyNames.get(keycode));
+            else
+                label.setText(String.valueOf((char) keycode));
+        }
+    }
+
+    Direction_Lable_Key[] direction_lable_keys;
+
     boolean onKeyReleased(KeyEvent e) {
         if (setting) {
             return true;
         } else {
-            if (e.getKeyCode() == KEY_UP)
+            if (e.getKeyCode() == direction_lable_keys[0].keycode)
                 y = 0;
-            else if (e.getKeyCode() == KEY_DOWN)
+            else if (e.getKeyCode() == direction_lable_keys[1].keycode)
                 y = 0;
-            else if (e.getKeyCode() == KEY_RIGHT)
+            else if (e.getKeyCode() == direction_lable_keys[2].keycode)
                 x = 0;
-            else if (e.getKeyCode() == KEY_LEFT)
+            else if (e.getKeyCode() == direction_lable_keys[3].keycode)
                 x = 0;
             else return false;
             updateBallLocation();
@@ -338,36 +446,68 @@ public class Pc_controllerSetting extends JFrame {
     class MyDispatcher implements KeyEventDispatcher {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
+            panel_center.grabFocus();
             if (e.getID() == KeyEvent.KEY_PRESSED)
                 return onKeyPressed(e);
             else if (e.getID() == KeyEvent.KEY_RELEASED)
                 return onKeyReleased(e);
             else if (e.getID() == KeyEvent.KEY_TYPED)
                 ;
-            return false;
+            return (e.getKeyChar() != ' ');
         }
     }
 
-    private int key_to_edit;
+    private Direction_Lable_Key key_to_edit = null;
 
-    boolean isBetween(int low, int target, int high) {
-        return (low <= target && target <= high);
-    }
+    public static Vector<Range> direction_keys = new Vector<>();
 
-    boolean isBetween(int target, Vector<Range> range) {
-        range.forEach(new Consumer<Range>() {
-            @Override
-            public void accept(Range range) {
-                
+
+    public static class Range {
+        public static boolean isBetween(int target, Vector<Range> ranges) {
+            boolean isBetween = false;
+            System.out.println("comapring: " + target);
+            for (Range range : ranges) {
+                {
+                    System.out.println(range.low + "----" + range.high);
+                    isBetween |= range.isBetween(target);
+                }
+
             }
-        });
-    }
+            return isBetween;
+        }
 
-    class Range {
+        public static boolean isBetween(int low, int target, int high) {
+            return (low <= target && target <= high);
+        }
+
+        public boolean isBetween(int target) {
+            return isBetween(low, target, high);
+        }
+
         int high, low;
-        public Range(int high, int low) {
+
+        public Range(int low, int high) {
             this.high = high;
             this.low = low;
         }
+
+        public Range(int range) {
+            this.high = range;
+            this.low = range;
+        }
+
+        public Range(char range) {
+            this.high = range;
+            this.low = range;
+        }
+
+
+        public Range(char low, char high) {
+            this.high = high;
+            this.low = low;
+        }
+
     }
+
+    JPanel panel_center;
 }

@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="211e60c4-6347-4ccd-8a09-058981cd7a65" name="Default" comment="">
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\gamemonitor\CopyOfDeviceInfoPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\gamemonitor\DeviceInfoPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\gamemonitor\MainWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\gamemonitor\MainWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\gamemonitor\SetDeviceInfo$1.class" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\gamemonitor\SetDeviceInfo.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$1.class" afterPath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$1.class" />
-      <change type="MODIFICATION" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$2.class" afterPath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$2.class" />
-      <change type="MODIFICATION" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$MyDispatcher.class" afterPath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$MyDispatcher.class" />
-      <change type="MODIFICATION" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting.class" afterPath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting.class" />
+      <change type="MODIFICATION" beforePath="E:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$1.class" afterPath="E:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$1.class" />
+      <change type="MODIFICATION" beforePath="E:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$2.class" afterPath="E:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$2.class" />
+      <change type="MODIFICATION" beforePath="E:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$MyDispatcher.class" afterPath="E:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting$MyDispatcher.class" />
+      <change type="MODIFICATION" beforePath="E:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting.class" afterPath="$PROJECT_DIR$/bin/pccontroller/Pc_controllerSetting.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/pacmanrobot/Utils.class" afterPath="$PROJECT_DIR$/bin/pacmanrobot/Utils.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pccontroller/Pc_controllerSetting.java" afterPath="$PROJECT_DIR$/src/pccontroller/Pc_controllerSetting.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -39,12 +33,27 @@
       <file leaf-file-name="Pc_controllerSetting.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pccontroller/Pc_controllerSetting.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79268295">
-              <caret line="360" column="16" selection-start-line="360" selection-start-column="16" selection-end-line="360" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.74738675">
+              <caret line="393" column="25" selection-start-line="393" selection-start-column="25" selection-end-line="393" selection-end-column="25" />
               <folding>
-                <element signature="e#13015#13016#0" expanded="true" />
-                <element signature="e#13071#13072#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#14407#14408#0" expanded="true" />
+                <element signature="e#14435#14436#0" expanded="true" />
+                <element signature="e#17992#17993#0" expanded="true" />
+                <element signature="e#18056#18057#0" expanded="true" />
+                <element signature="e#18104#18105#0" expanded="true" />
+                <element signature="e#18163#18164#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="String.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/lang/String.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,8 +61,8 @@
       <file leaf-file-name="KeyEvent.class" pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/awt/event/KeyEvent.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.0">
-              <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="110" column="28" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -64,9 +73,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,8 +125,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="260" />
-    <option name="y" value="20" />
+    <option name="x" value="401" />
+    <option name="y" value="15" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -184,6 +191,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,12 +246,10 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../CommonFiles/scala-2.11.6" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../_Git/bin/git.exe" />
     <property name="FullScreen" value="false" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -477,6 +484,38 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -503,6 +542,22 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
       <method />
     </configuration>
     <list size="5">
@@ -541,7 +596,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="260" y="20" width="1400" height="1000" extended-state="0" />
+    <frame x="401" y="15" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -595,9 +650,22 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13015#13016#0" expanded="true" />
-            <element signature="e#13071#13072#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#14407#14408#0" expanded="true" />
+            <element signature="e#14435#14436#0" expanded="true" />
+            <element signature="e#17992#17993#0" expanded="true" />
+            <element signature="e#18056#18057#0" expanded="true" />
+            <element signature="e#18104#18105#0" expanded="true" />
+            <element signature="e#18163#18164#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/awt/event/KeyEvent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -605,9 +673,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -616,8 +682,45 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13015#13016#0" expanded="true" />
-            <element signature="e#13071#13072#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#14407#14408#0" expanded="true" />
+            <element signature="e#14435#14436#0" expanded="true" />
+            <element signature="e#17992#17993#0" expanded="true" />
+            <element signature="e#18056#18057#0" expanded="true" />
+            <element signature="e#18104#18105#0" expanded="true" />
+            <element signature="e#18163#18164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/awt/event/KeyEvent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pccontroller/PauseInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pccontroller/Pc_controllerSetting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14407#14408#0" expanded="true" />
+            <element signature="e#14435#14436#0" expanded="true" />
+            <element signature="e#17992#17993#0" expanded="true" />
+            <element signature="e#18056#18057#0" expanded="true" />
+            <element signature="e#18104#18105#0" expanded="true" />
+            <element signature="e#18163#18164#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -626,9 +729,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pccontroller/Pc_controllerSetting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#14407#14408#0" expanded="true" />
+            <element signature="e#14435#14436#0" expanded="true" />
+            <element signature="e#17992#17993#0" expanded="true" />
+            <element signature="e#18056#18057#0" expanded="true" />
+            <element signature="e#18104#18105#0" expanded="true" />
+            <element signature="e#18163#18164#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pccontroller/PauseInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -865,27 +990,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/lang/Thread.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="454" column="33" selection-start-line="454" selection-start-column="33" selection-end-line="454" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/lang/Throwable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35300925">
+          <caret line="151" column="23" selection-start-line="151" selection-start-column="23" selection-end-line="151" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3684#3685#0" expanded="true" />
+            <element signature="e#3732#3733#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/awt/event/KeyEvent.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.0">
-          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="110" column="28" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/lang/CharSequence.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17770036">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/lang/Comparable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1184669">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/io/Serializable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1184669">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/lang/String.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pccontroller/Pc_controllerSetting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79268295">
-          <caret line="360" column="16" selection-start-line="360" selection-start-column="16" selection-end-line="360" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.74738675">
+          <caret line="393" column="25" selection-start-line="393" selection-start-column="25" selection-end-line="393" selection-end-column="25" />
           <folding>
-            <element signature="e#13015#13016#0" expanded="true" />
-            <element signature="e#13071#13072#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#14407#14408#0" expanded="true" />
+            <element signature="e#14435#14436#0" expanded="true" />
+            <element signature="e#17992#17993#0" expanded="true" />
+            <element signature="e#18056#18057#0" expanded="true" />
+            <element signature="e#18104#18105#0" expanded="true" />
+            <element signature="e#18163#18164#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -947,7 +1126,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
