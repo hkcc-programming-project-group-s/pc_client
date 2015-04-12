@@ -1,4 +1,4 @@
-package pccontroller;
+package PCcontroller;
 
 import pacmanrobot.Utils;
 
