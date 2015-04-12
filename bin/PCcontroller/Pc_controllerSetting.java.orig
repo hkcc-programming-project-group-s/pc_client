@@ -1,4 +1,4 @@
-package pccontroller;
+package PCcontroller;
 
 import pacmanrobot.Utils;
 
@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Vector;
-import java.util.function.Consumer;
 
 public class Pc_controllerSetting extends JFrame {
 
@@ -54,7 +52,7 @@ public class Pc_controllerSetting extends JFrame {
         getContentPane().add(panel_center, BorderLayout.NORTH);
         GridBagLayout gbl_clockwiseTurmLbl = new GridBagLayout();
         gbl_clockwiseTurmLbl.columnWidths = new int[]{0, 0, 0, 0, 0};
-        gbl_clockwiseTurmLbl.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0,
+        gbl_clockwiseTurmLbl.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0};
         gbl_clockwiseTurmLbl.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0};
         gbl_clockwiseTurmLbl.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0,
@@ -90,11 +88,6 @@ public class Pc_controllerSetting extends JFrame {
         panel_center.add(controllerNameLbl, gbc_controllerNameLbl);
 
         JButton editNameBtn = new JButton("Edit");
-        editNameBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setting = true;
-            }
-        });
         GridBagConstraints gbc_editNameBtn = new GridBagConstraints();
         gbc_editNameBtn.insets = new Insets(0, 0, 5, 5);
         gbc_editNameBtn.gridx = 3;
@@ -153,8 +146,6 @@ public class Pc_controllerSetting extends JFrame {
         JButton editUpBtn = new JButton("Edit");
         editUpBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_UP;
-                setting = true;
             }
         });
         GridBagConstraints gbc_editUpBtn = new GridBagConstraints();
@@ -178,71 +169,53 @@ public class Pc_controllerSetting extends JFrame {
         panel_center.add(downArrowLbl, gbc_downArrowLbl);
 
         JButton editDownBtn = new JButton("Edit");
-        editDownBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_DOWN;
-                setting = true;
-            }
-        });
         GridBagConstraints gbc_editDownBtn = new GridBagConstraints();
         gbc_editDownBtn.insets = new Insets(0, 0, 5, 5);
         gbc_editDownBtn.gridx = 3;
         gbc_editDownBtn.gridy = 6;
         panel_center.add(editDownBtn, gbc_editDownBtn);
 
+        JLabel clockwiseTurm = new JLabel("Clockwise Turm");
+        GridBagConstraints gbc_clockwiseTurm = new GridBagConstraints();
+        gbc_clockwiseTurm.insets = new Insets(0, 0, 5, 5);
+        gbc_clockwiseTurm.gridx = 1;
+        gbc_clockwiseTurm.gridy = 7;
+        panel_center.add(clockwiseTurm, gbc_clockwiseTurm);
+
+        rightArrowLbl = new JLabel("Right Arrow");
+        GridBagConstraints gbc_rightArrowLbl = new GridBagConstraints();
+        gbc_rightArrowLbl.insets = new Insets(0, 0, 5, 5);
+        gbc_rightArrowLbl.gridx = 2;
+        gbc_rightArrowLbl.gridy = 7;
+        panel_center.add(rightArrowLbl, gbc_rightArrowLbl);
+
+        JButton editRightBtn = new JButton("Edit");
+        GridBagConstraints gbc_editRightBtn = new GridBagConstraints();
+        gbc_editRightBtn.insets = new Insets(0, 0, 5, 5);
+        gbc_editRightBtn.gridx = 3;
+        gbc_editRightBtn.gridy = 7;
+        panel_center.add(editRightBtn, gbc_editRightBtn);
+
         JLabel Anti_clockwiseTurnLbl = new JLabel("Anti-clockwise Turm");
         GridBagConstraints gbc_Anti_clockwiseTurnLbl = new GridBagConstraints();
         gbc_Anti_clockwiseTurnLbl.insets = new Insets(0, 0, 5, 5);
         gbc_Anti_clockwiseTurnLbl.gridx = 1;
-        gbc_Anti_clockwiseTurnLbl.gridy = 7;
+        gbc_Anti_clockwiseTurnLbl.gridy = 8;
         panel_center.add(Anti_clockwiseTurnLbl, gbc_Anti_clockwiseTurnLbl);
 
         leftArrowLbl = new JLabel("Left Arrow");
         GridBagConstraints gbc_leftArrowLbl = new GridBagConstraints();
         gbc_leftArrowLbl.insets = new Insets(0, 0, 5, 5);
         gbc_leftArrowLbl.gridx = 2;
-        gbc_leftArrowLbl.gridy = 7;
+        gbc_leftArrowLbl.gridy = 8;
         panel_center.add(leftArrowLbl, gbc_leftArrowLbl);
 
         JButton editLeftBtn = new JButton("Edit");
-        editLeftBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_LEFT;
-                setting = true;
-            }
-        });
         GridBagConstraints gbc_editLeftBtn = new GridBagConstraints();
         gbc_editLeftBtn.insets = new Insets(0, 0, 5, 5);
         gbc_editLeftBtn.gridx = 3;
-        gbc_editLeftBtn.gridy = 7;
+        gbc_editLeftBtn.gridy = 8;
         panel_center.add(editLeftBtn, gbc_editLeftBtn);
-
-        JLabel clockwiseTurm = new JLabel("Clockwise Turm");
-        GridBagConstraints gbc_clockwiseTurm = new GridBagConstraints();
-        gbc_clockwiseTurm.insets = new Insets(0, 0, 0, 5);
-        gbc_clockwiseTurm.gridx = 1;
-        gbc_clockwiseTurm.gridy = 8;
-        panel_center.add(clockwiseTurm, gbc_clockwiseTurm);
-
-        rightArrowLbl = new JLabel("Right Arrow");
-        GridBagConstraints gbc_rightArrowLbl = new GridBagConstraints();
-        gbc_rightArrowLbl.insets = new Insets(0, 0, 0, 5);
-        gbc_rightArrowLbl.gridx = 2;
-        gbc_rightArrowLbl.gridy = 8;
-        panel_center.add(rightArrowLbl, gbc_rightArrowLbl);
-
-        JButton editRightBtn = new JButton("Edit");
-        editRightBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                key_to_edit = KEY_RIGHT;
-                setting = true;
-            }
-        });
-        GridBagConstraints gbc_editRightBtn = new GridBagConstraints();
-        gbc_editRightBtn.insets = new Insets(0, 0, 0, 5);
-        gbc_editRightBtn.gridx = 3;
-        gbc_editRightBtn.gridy = 8;
-        panel_center.add(editRightBtn, gbc_editRightBtn);
 
         JPanel panel_buttom = new JPanel();
         getContentPane().add(panel_buttom, BorderLayout.SOUTH);
@@ -276,28 +249,17 @@ public class Pc_controllerSetting extends JFrame {
         });
     }
 
-    boolean onKeyPressed(KeyEvent e) {
+    boolean onKeyPressed(int keycode) {
         if (setting) {
-            if (key_to_edit == KEY_UP) {
-                KEY_UP = e.getKeyCode();
-                upArrowLbl.setText(String.valueOf(e.getKeyChar()));
-            } else if (key_to_edit == KEY_DOWN)
-                KEY_DOWN = e.getKeyCode();
-            else if (key_to_edit == KEY_RIGHT)
-                KEY_RIGHT = e.getKeyCode();
-            else if (key_to_edit == KEY_LEFT)
-                KEY_LEFT = e.getKeyCode();
-            else return false;
-            setting = false;
             return true;
         } else {
-            if (e.getKeyCode() == KEY_UP)
+            if (keycode == KEY_UP)
                 y = -1;
-            else if (e.getKeyCode() == KEY_DOWN)
+            else if (keycode == KEY_DOWN)
                 y = 1;
-            else if (e.getKeyCode() == KEY_RIGHT)
+            else if (keycode == KEY_RIGHT)
                 x = 1;
-            else if (e.getKeyCode() == KEY_LEFT)
+            else if (keycode == KEY_LEFT)
                 x = -1;
             else return false;
             updateBallLocation();
@@ -305,17 +267,17 @@ public class Pc_controllerSetting extends JFrame {
         }
     }
 
-    boolean onKeyReleased(KeyEvent e) {
+    boolean onKeyReleased(int keycode) {
         if (setting) {
             return true;
         } else {
-            if (e.getKeyCode() == KEY_UP)
+            if (keycode == KEY_UP)
                 y = 0;
-            else if (e.getKeyCode() == KEY_DOWN)
+            else if (keycode == KEY_DOWN)
                 y = 0;
-            else if (e.getKeyCode() == KEY_RIGHT)
+            else if (keycode == KEY_RIGHT)
                 x = 0;
-            else if (e.getKeyCode() == KEY_LEFT)
+            else if (keycode == KEY_LEFT)
                 x = 0;
             else return false;
             updateBallLocation();
@@ -339,35 +301,13 @@ public class Pc_controllerSetting extends JFrame {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_PRESSED)
-                return onKeyPressed(e);
+                return onKeyPressed(e.getKeyCode());
             else if (e.getID() == KeyEvent.KEY_RELEASED)
-                return onKeyReleased(e);
+                return onKeyReleased(e.getKeyCode());
             else if (e.getID() == KeyEvent.KEY_TYPED)
                 ;
             return false;
         }
     }
 
-    private int key_to_edit;
-
-    boolean isBetween(int low, int target, int high) {
-        return (low <= target && target <= high);
-    }
-
-    boolean isBetween(int target, Vector<Range> range) {
-        range.forEach(new Consumer<Range>() {
-            @Override
-            public void accept(Range range) {
-                
-            }
-        });
-    }
-
-    class Range {
-        int high, low;
-        public Range(int high, int low) {
-            this.high = high;
-            this.low = low;
-        }
-    }
 }
