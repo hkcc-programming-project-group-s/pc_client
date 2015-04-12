@@ -1,5 +1,7 @@
 package gamemonitor.gui;
 
+import gamemonitor.gui.deviceinfo.DeviceInfoJPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -7,6 +9,8 @@ import java.awt.event.MouseListener;
 
 public class DevicePairJPanel extends JPanel {
 
+    public static final Color clicked_color = new Color(227, 242, 255);
+    public static final Color unclicked_color = new Color(143, 202, 255);
     public final DeviceInfoJPanel controllerJPanel;
     public final DeviceInfoJPanel robotJPanel;
     public boolean isClicked = false;
@@ -66,6 +70,24 @@ public class DevicePairJPanel extends JPanel {
         });
     }
 
+    public PairControllerRobotFrame getMaster() {
+        if (controllerJPanel.master_pair.equals(robotJPanel.master_pair))
+            throw new IllegalComponentStateException();
+        return controllerJPanel.master_pair;
+    }
+
+    public void click() {
+        isClicked = true;
+        setBackground(clicked_color);
+        PairControllerRobotFrame.onPairedDeviceInfoPanelClicked(this);
+        //ControllerRobotPairFrame.onUnpairedDeviceInfoPanelClicked(this);
+    }
+
+    public void unclick() {
+        isClicked = false;
+        setBackground(unclicked_color);
+    }
+
     static class LineBox extends Box {
         public LineBox(int i) {
             super(i);
@@ -82,27 +104,5 @@ public class DevicePairJPanel extends JPanel {
             graphics.setColor(new Color(71, 101, 128));
             graphics.fillRoundRect(0, getHeight() * 2 / 5, getWidth(), getHeight() / 5, 10, 10);
         }
-    }
-
-    public ControllerRobotPairFrame getMaster() {
-        if (controllerJPanel.master_pair.equals(robotJPanel.master_pair))
-            throw new IllegalComponentStateException();
-        return controllerJPanel.master_pair;
-    }
-
-
-    public void click() {
-        isClicked = true;
-        setBackground(clicked_color);
-        ControllerRobotPairFrame.onPairedDeviceInfoPanelClicked(this);
-           //ControllerRobotPairFrame.onUnpairedDeviceInfoPanelClicked(this);
-    }
-
-    public static final Color clicked_color = new Color(227, 242, 255);
-    public static final Color unclicked_color = new Color(143, 202, 255);
-
-    public void unclick() {
-        isClicked = false;
-        setBackground(unclicked_color);
     }
 }

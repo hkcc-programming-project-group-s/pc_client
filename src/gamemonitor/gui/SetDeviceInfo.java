@@ -1,5 +1,11 @@
 package gamemonitor.gui;
 
+import com.sun.istack.internal.NotNull;
+import gamemonitor.gui.deviceinfo.DeviceInfoContainer;
+import gamemonitor.gui.deviceinfo.DeviceInfo;
+import gamemonitor.gui.deviceinfo.DeviceInfoJPanel;
+import gamemonitor.gui.deviceinfo.DeviceInfoJPanelHandler;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -12,24 +18,24 @@ import java.net.MalformedURLException;
 import java.util.ConcurrentModificationException;
 import java.util.Vector;
 
-public class SetDeviceInfo extends JFrame {
+public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler {
     public Vector<DeviceInfoJPanel> controllerJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> unclassesRobotJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> studentJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> deadlineJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> assignmentJPanels = new Vector<DeviceInfoJPanel>();
-    private JPanel contentPane;
     JPanel controller_panel;
-    JPanel unclasses_panel;
-    JPanel assignment_robot_panel;
-    JPanel student_robot_panel;
-    JPanel deadline_robot_panel;
+    DeviceInfoContainer unclasses_panel;
+    DeviceInfoContainer assignment_robot_panel;
+    DeviceInfoContainer student_robot_panel;
+    DeviceInfoContainer deadline_robot_panel;
+    private JPanel contentPane;
 
 
     /**
      * Create the frame.
      */
-    public SetDeviceInfo()throws MalformedURLException, IOException {
+    public SetDeviceInfo() throws MalformedURLException, IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
         contentPane = new JPanel();
@@ -37,16 +43,18 @@ public class SetDeviceInfo extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
-        controllerJPanels.add(new DeviceInfoJPanel(this,DeviceInfo.CONTROLLER, "192.168.1.3", "Controller 1"));
-        controllerJPanels.add(new DeviceInfoJPanel(this,DeviceInfo.CONTROLLER, "192.168.1.1", "Controller 2"));
-        controllerJPanels.add(new DeviceInfoJPanel(this,DeviceInfo.CONTROLLER, "192.168.1.2", "Controller 3"));
+        controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.3", "Controller 1"));
+        controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.1", "Controller 2"));
+        controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.2", "Controller 3"));
+        unclassesRobotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"));
+        unclassesRobotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"));
 
         JPanel panel_center = new JPanel();
         panel_center.setBorder(null);
         contentPane.add(panel_center);
         panel_center.setLayout(new GridLayout(3, 1, 0, 10));
 
-        unclasses_panel = new JPanel();
+        unclasses_panel = new DeviceInfoContainer(deviceInfoContainers);
         panel_center.add(unclasses_panel);
         unclasses_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Unclassed Robots", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
         unclasses_panel.setBackground(new Color(198, 228, 255));
@@ -99,6 +107,8 @@ public class SetDeviceInfo extends JFrame {
         Component horizontalGlue = Box.createHorizontalGlue();
         panel_bottom.add(horizontalGlue);
         initView();
+
+        deviceInfoContainers.add(unclasses_panel);
     }
 
     /**
@@ -116,6 +126,7 @@ public class SetDeviceInfo extends JFrame {
             }
         });
     }
+
     void initView() {
         controllerJPanels.forEach(p -> controller_panel.add(p));
         controller_panel.updateUI();
@@ -123,7 +134,7 @@ public class SetDeviceInfo extends JFrame {
         unclassesRobotJPanels.forEach(p -> unclasses_panel.add(p));
         unclasses_panel.updateUI();
 
-       studentJPanels.forEach(p -> student_robot_panel.add(p));
+        studentJPanels.forEach(p -> student_robot_panel.add(p));
         student_robot_panel.updateUI();
 
         deadlineJPanels.forEach(p -> deadline_robot_panel.add(p));
@@ -133,96 +144,114 @@ public class SetDeviceInfo extends JFrame {
         assignment_robot_panel.updateUI();
     }
 
-    public void onControllerJPPanelsclick(DeviceInfoJPanel clickedPanel){
+    public void onControllerJPPanelsclick(DeviceInfoJPanel clickedPanel) {
         //System.out.print("onControllerJPPanelsclick");
-        try{
-        if(clickedPanel.deviceType==DeviceInfo.CONTROLLER){
-            controllerJPanels.forEach(p->checkClick(p,clickedPanel));
-        }
-        else if(clickedPanel.deviceType==DeviceInfo.ROBOT_UNCLASSED){
-            unclassesRobotJPanels.forEach(p -> checkClick(p,clickedPanel));
-        }
-        else if(clickedPanel.deviceType==DeviceInfo.ROBOT_STUDENT){
-            studentJPanels.forEach(p->checkClick(p,clickedPanel));
-        }
-        else if(clickedPanel.deviceType==DeviceInfo.ROBOT_ASSIGNMENT){
-            assignmentJPanels.forEach(p->checkClick(p,clickedPanel));
-        }
-        else if(clickedPanel.deviceType==DeviceInfo.ROBOT_DEADLINE){
-            deadlineJPanels.forEach(p->checkClick(p,clickedPanel));
-        }}
-        catch (ConcurrentModificationException e) {
+        try {
+            if (clickedPanel.deviceType == DeviceInfo.CONTROLLER) {
+                controllerJPanels.forEach(p -> checkClick(p, clickedPanel));
+            } else if (clickedPanel.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
+                unclassesRobotJPanels.forEach(p -> checkClick(p, clickedPanel));
+            } else if (clickedPanel.deviceType == DeviceInfo.ROBOT_STUDENT) {
+                studentJPanels.forEach(p -> checkClick(p, clickedPanel));
+            } else if (clickedPanel.deviceType == DeviceInfo.ROBOT_ASSIGNMENT) {
+                assignmentJPanels.forEach(p -> checkClick(p, clickedPanel));
+            } else if (clickedPanel.deviceType == DeviceInfo.ROBOT_DEADLINE) {
+                deadlineJPanels.forEach(p -> checkClick(p, clickedPanel));
+            }
+        } catch (ConcurrentModificationException e) {
             System.out.println(e.toString());
         }
     }
-    public void checkClick(DeviceInfoJPanel checkPanel,DeviceInfoJPanel clickedPanel){
+
+    public void checkClick(DeviceInfoJPanel checkPanel, DeviceInfoJPanel clickedPanel) {
         if (!clickedPanel.equals(checkPanel))
             checkPanel.unclick();
     }
 
-    void remove(){
-
-            for (DeviceInfoJPanel controllerDeviceInfoJPanel : controllerJPanels)
-                if (controllerDeviceInfoJPanel.isClicked && !controllerDeviceInfoJPanel.isSelected) {
-                    controllerJPanels.remove(controllerDeviceInfoJPanel);
-                    controllerDeviceInfoJPanel.isSelected = true;
-                    try {
-                        controller_panel.remove(controllerDeviceInfoJPanel);
-                    } catch (Exception e) {
-                        System.out.println(e.toString());
-                    }
-                    controller_panel.updateUI();
+    void remove() {
+        for (DeviceInfoJPanel controllerDeviceInfoJPanel : controllerJPanels)
+            if (controllerDeviceInfoJPanel.isClicked && !controllerDeviceInfoJPanel.isSelected) {
+                controllerJPanels.remove(controllerDeviceInfoJPanel);
+                controllerDeviceInfoJPanel.isSelected = true;
+                try {
+                    controller_panel.remove(controllerDeviceInfoJPanel);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
                 }
+                controller_panel.updateUI();
+            }
 
 
-            for (DeviceInfoJPanel unClassesRobotDeviceInfoJPanel : unclassesRobotJPanels)
-                if (unClassesRobotDeviceInfoJPanel.isClicked && !unClassesRobotDeviceInfoJPanel.isSelected) {
-                    controllerJPanels.remove(unClassesRobotDeviceInfoJPanel);
-                    unClassesRobotDeviceInfoJPanel.isSelected = true;
-                    try {
-                        unclasses_panel.remove(unClassesRobotDeviceInfoJPanel);
-                    } catch (Exception e) {
-                        System.out.println(e.toString());
-                    }
-                    unclasses_panel.updateUI();
+        for (DeviceInfoJPanel unClassesRobotDeviceInfoJPanel : unclassesRobotJPanels)
+            if (unClassesRobotDeviceInfoJPanel.isClicked && !unClassesRobotDeviceInfoJPanel.isSelected) {
+                controllerJPanels.remove(unClassesRobotDeviceInfoJPanel);
+                unClassesRobotDeviceInfoJPanel.isSelected = true;
+                try {
+                    unclasses_panel.remove(unClassesRobotDeviceInfoJPanel);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
                 }
+                unclasses_panel.updateUI();
+            }
 
-            for (DeviceInfoJPanel studentDeviceInfoJPanel : studentJPanels)
-                if (studentDeviceInfoJPanel.isClicked && !studentDeviceInfoJPanel.isSelected) {
-                    controllerJPanels.remove(studentDeviceInfoJPanel);
-                    studentDeviceInfoJPanel.isSelected = true;
-                    try {
-                        student_robot_panel.remove(studentDeviceInfoJPanel);
-                    } catch (Exception e) {
-                        System.out.println(e.toString());
-                    }
-                    student_robot_panel.updateUI();
+        for (DeviceInfoJPanel studentDeviceInfoJPanel : studentJPanels)
+            if (studentDeviceInfoJPanel.isClicked && !studentDeviceInfoJPanel.isSelected) {
+                controllerJPanels.remove(studentDeviceInfoJPanel);
+                studentDeviceInfoJPanel.isSelected = true;
+                try {
+                    student_robot_panel.remove(studentDeviceInfoJPanel);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
                 }
+                student_robot_panel.updateUI();
+            }
 
-            for (DeviceInfoJPanel deadlineDeviceInfoJPanel : deadlineJPanels)
-                if (deadlineDeviceInfoJPanel.isClicked && !deadlineDeviceInfoJPanel.isSelected) {
-                    controllerJPanels.remove(deadlineDeviceInfoJPanel);
-                    deadlineDeviceInfoJPanel.isSelected = true;
-                    try {
-                        deadline_robot_panel.remove(deadlineDeviceInfoJPanel);
-                    } catch (Exception e) {
-                        System.out.println(e.toString());
-                    }
-                    deadline_robot_panel.updateUI();
+        for (DeviceInfoJPanel deadlineDeviceInfoJPanel : deadlineJPanels)
+            if (deadlineDeviceInfoJPanel.isClicked && !deadlineDeviceInfoJPanel.isSelected) {
+                controllerJPanels.remove(deadlineDeviceInfoJPanel);
+                deadlineDeviceInfoJPanel.isSelected = true;
+                try {
+                    deadline_robot_panel.remove(deadlineDeviceInfoJPanel);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
                 }
+                deadline_robot_panel.updateUI();
+            }
 
-            for (DeviceInfoJPanel assignmentDeviceInfoJPanel : assignmentJPanels)
-                if (assignmentDeviceInfoJPanel.isClicked && !assignmentDeviceInfoJPanel.isSelected) {
-                    controllerJPanels.remove(assignmentDeviceInfoJPanel);
-                    assignmentDeviceInfoJPanel.isSelected = true;
-                    try {
-                        assignment_robot_panel.remove(assignmentDeviceInfoJPanel);
-                    } catch (Exception e) {
-                        System.out.println(e.toString());
-                    }
-                    assignment_robot_panel.updateUI();
+        for (DeviceInfoJPanel assignmentDeviceInfoJPanel : assignmentJPanels)
+            if (assignmentDeviceInfoJPanel.isClicked && !assignmentDeviceInfoJPanel.isSelected) {
+                controllerJPanels.remove(assignmentDeviceInfoJPanel);
+                assignmentDeviceInfoJPanel.isSelected = true;
+                try {
+                    assignment_robot_panel.remove(assignmentDeviceInfoJPanel);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
                 }
+                assignment_robot_panel.updateUI();
+            }
 
-        }
     }
+
+
+    Vector<DeviceInfoJPanel> unclassedJPanels = new Vector<>();
+
+
+    DeviceInfoJPanel clicked = null;
+
+    @NotNull
+    public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
+        System.out.println("this, here, there, right here");
+        if (clicked != null)
+            clicked.unclick();
+        clicked = deviceInfoJPanel;
+        clicked.click();
+        //TODO change color of it and last clicked
+    }
+
+    Vector<DeviceInfoContainer> deviceInfoContainers =new Vector<>();
+    @Override
+    public Vector<DeviceInfoContainer> getDeviceInfoContainers() {
+        return deviceInfoContainers;
+    }
+}
 

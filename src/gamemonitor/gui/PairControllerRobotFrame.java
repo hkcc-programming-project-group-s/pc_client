@@ -1,5 +1,9 @@
 package gamemonitor.gui;
 
+import gamemonitor.gui.deviceinfo.DeviceInfo;
+import gamemonitor.gui.deviceinfo.DeviceInfoJPanel;
+import gamemonitor.gui.deviceinfo.DeviceInfoJPanelHandler;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -12,14 +16,17 @@ import java.net.MalformedURLException;
 import java.util.ConcurrentModificationException;
 import java.util.Vector;
 
-public class ControllerRobotPairFrame extends JFrame {
+public class PairControllerRobotFrame extends JFrame implements DeviceInfoJPanelHandler {
+    private static final int MAX_WRONG_ATTEMPT = 3;
+    public static Vector<DevicePairJPanel> pairedJPanels = new Vector<DevicePairJPanel>();
     public Vector<DeviceInfoJPanel> controllerJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> robotJPanels = new Vector<DeviceInfoJPanel>();
-    public static Vector<DevicePairJPanel> pairedJPanels = new Vector<DevicePairJPanel>();
     JPanel controller_panel;
     JPanel robot_panel;
     JPanel pair_panel = new JPanel();
+    int makePairAttempt = 0;
     private JPanel contentPane;
+
 
     /**
      * Create the frame.
@@ -27,7 +34,7 @@ public class ControllerRobotPairFrame extends JFrame {
      * @throws IOException
      * @throws MalformedURLException
      */
-    public ControllerRobotPairFrame() throws MalformedURLException, IOException {
+    public PairControllerRobotFrame() throws MalformedURLException, IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
         contentPane = new JPanel();
@@ -41,23 +48,23 @@ public class ControllerRobotPairFrame extends JFrame {
         controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.1", "Controller 2"));
         controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.2", "Controller 3"));
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-        
-                JPanel controlrobot_panel = new JPanel();
-                contentPane.add(controlrobot_panel);
-                controlrobot_panel.setLayout(new GridLayout(0, 2, 10, 0));
-                
-                        controller_panel = new JPanel();
-                        controller_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Controllers",
-                                TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
-                        controller_panel.setBackground(new Color(198, 228, 255));
-                        // controller_panel.setBackground(new Color(22,22,22));
-                        controlrobot_panel.add(controller_panel);
-                        
-                                robot_panel = new JPanel();
-                                robot_panel.setBorder(new TitledBorder(null, "Robots", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-                                robot_panel.setBackground(new Color(198, 228, 255));
-                                controlrobot_panel.add(robot_panel);
-        
+
+        JPanel controlrobot_panel = new JPanel();
+        contentPane.add(controlrobot_panel);
+        controlrobot_panel.setLayout(new GridLayout(0, 2, 10, 0));
+
+        controller_panel = new JPanel();
+        controller_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Controllers",
+                TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
+        controller_panel.setBackground(new Color(198, 228, 255));
+        // controller_panel.setBackground(new Color(22,22,22));
+        controlrobot_panel.add(controller_panel);
+
+        robot_panel = new JPanel();
+        robot_panel.setBorder(new TitledBorder(null, "Robots", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+        robot_panel.setBackground(new Color(198, 228, 255));
+        controlrobot_panel.add(robot_panel);
+
         Component rigidArea_1 = Box.createRigidArea(new Dimension(5, 5));
         //contentPane.add(rigidArea_1);
 
@@ -68,20 +75,20 @@ public class ControllerRobotPairFrame extends JFrame {
         JButton setbutton = new JButton("Set Pair");
         setbutton.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel_upper.add(setbutton);
-                
-                Component rigidArea = Box.createRigidArea(new Dimension(20, 36));
-                panel_upper.add(rigidArea);
-        
-                JButton removeButton = new JButton("Remove Pair");
-                panel_upper.add(removeButton);
-                removeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-                
-                        removeButton.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                                remove();
-                            }
-                        });
-        
+
+        Component rigidArea = Box.createRigidArea(new Dimension(20, 36));
+        panel_upper.add(rigidArea);
+
+        JButton removeButton = new JButton("Remove Pair");
+        panel_upper.add(removeButton);
+        removeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        removeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                remove();
+            }
+        });
+
         Component rigidArea_2 = Box.createRigidArea(new Dimension(5, 5));
         //contentPane.add(rigidArea_2);
         contentPane.add(pair_panel);
@@ -109,38 +116,13 @@ public class ControllerRobotPairFrame extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    ControllerRobotPairFrame frame = new ControllerRobotPairFrame();
+                    PairControllerRobotFrame frame = new PairControllerRobotFrame();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-    }
-
-
-    void initView() {
-        controllerJPanels.forEach(p -> controller_panel.add(p));
-        controller_panel.updateUI();
-
-        robotJPanels.forEach(p -> robot_panel.add(p));
-        robot_panel.updateUI();
-
-        pairedJPanels.forEach(p -> pair_panel.add(p));
-        pair_panel.updateUI();
-    }
-
-    public void onUnpairedDeviceInfoPanelClicked(DeviceInfoJPanel clickedPanel) {
-        System.out.println("onUnpairedDeviceInfoPanelClicked");
-        try {
-            if (clickedPanel.deviceType == DeviceInfo.CONTROLLER) {
-                controllerJPanels.forEach(p -> checkUnclickDeviceInfoJPanel(p, clickedPanel));
-            } else if (clickedPanel.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
-                robotJPanels.forEach(p -> checkUnclickDeviceInfoJPanel(p, clickedPanel));
-            }
-        } catch (ConcurrentModificationException e) {
-            System.out.println(e.toString());
-        }
     }
 
     public static void onPairedDeviceInfoPanelClicked(DevicePairJPanel clickedPanel) {
@@ -154,6 +136,31 @@ public class ControllerRobotPairFrame extends JFrame {
     private static void checkUnclickOnPairedDeviceInfoJPanel(DevicePairJPanel checkPanel, DevicePairJPanel clickedPanel) {
         if (!clickedPanel.equals(checkPanel))
             checkPanel.unclick();
+    }
+
+    void initView() {
+        controllerJPanels.forEach(p -> controller_panel.add(p));
+        controller_panel.updateUI();
+
+        robotJPanels.forEach(p -> robot_panel.add(p));
+        robot_panel.updateUI();
+
+        pairedJPanels.forEach(p -> pair_panel.add(p));
+        pair_panel.updateUI();
+    }
+
+    @Override
+    public void onDeviceInfoJPanelClicked(DeviceInfoJPanel clickedPanel) {
+        System.out.println("onUnpairedDeviceInfoPanelClicked");
+        try {
+            if (clickedPanel.deviceType == DeviceInfo.CONTROLLER) {
+                controllerJPanels.forEach(p -> checkUnclickDeviceInfoJPanel(p, clickedPanel));
+            } else if (clickedPanel.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
+                robotJPanels.forEach(p -> checkUnclickDeviceInfoJPanel(p, clickedPanel));
+            }
+        } catch (ConcurrentModificationException e) {
+            System.out.println(e.toString());
+        }
     }
 
     private void checkUnclickDeviceInfoJPanel(DeviceInfoJPanel checkPanel, DeviceInfoJPanel clickedPanel) {
@@ -178,9 +185,6 @@ public class ControllerRobotPairFrame extends JFrame {
             makePairAttempt = 0;
         }
     }
-
-    int makePairAttempt = 0;
-    private static final int MAX_WRONG_ATTEMPT = 3;
 
     private void makePair(DeviceInfoJPanel controllerDeviceInfoJPanel, DeviceInfoJPanel robotDeviceInfoJPanel) {
         controllerJPanels.remove(controllerDeviceInfoJPanel);

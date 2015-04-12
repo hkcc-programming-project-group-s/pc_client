@@ -1,6 +1,6 @@
 package pacmanrobot;
 
-import gamemonitor.gui.DeviceInfo;
+import gamemonitor.gui.deviceinfo.DeviceInfo;
 
 import javax.swing.*;
 import java.io.IOException;

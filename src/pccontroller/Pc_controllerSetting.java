@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Vector;
-import java.util.function.Consumer;
-
-import static pccontroller.Pc_controllerSetting.Range.isBetween;
 
 import static java.awt.event.KeyEvent.*;
+import static pccontroller.Pc_controllerSetting.Range.isBetween;
 
 public class Pc_controllerSetting extends JFrame {
+    public static Vector<Range> direction_keys = new Vector<>();
+    static HashMap<Integer, String> keyNames = new HashMap<>();
     Pc_controllerSetting jFrame = this;
     JPanel ballLocation;
     JPanel ballLastLocation;
@@ -26,6 +26,9 @@ public class Pc_controllerSetting extends JFrame {
     JLabel ball;
     int x = 0;
     int y = 0;
+    MyDispatcher myDispatcher = new MyDispatcher();
+    Direction_Lable_Key[] direction_lable_keys;
+    JPanel panel_center;
     /**
      * Create the frame.
      *
@@ -44,8 +47,7 @@ public class Pc_controllerSetting extends JFrame {
     private JLabel rightArrowLbl;
     private JLabel leftArrowLbl;
     private JLabel upArrowLbl;
-
-    MyDispatcher myDispatcher = new MyDispatcher();
+    private Direction_Lable_Key key_to_edit = null;
 
     public Pc_controllerSetting() throws MalformedURLException, IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -336,8 +338,6 @@ public class Pc_controllerSetting extends JFrame {
         });
     }
 
-    static HashMap<Integer, String> keyNames = new HashMap<>();
-
     boolean onKeyPressed(KeyEvent e) {
         if (setting) {
             boolean result;
@@ -365,6 +365,81 @@ public class Pc_controllerSetting extends JFrame {
 
     private boolean checking(int keyCode) {
         return false;
+    }
+
+    boolean onKeyReleased(KeyEvent e) {
+        if (setting) {
+            return true;
+        } else {
+            if (e.getKeyCode() == direction_lable_keys[0].keycode)
+                y = 0;
+            else if (e.getKeyCode() == direction_lable_keys[1].keycode)
+                y = 0;
+            else if (e.getKeyCode() == direction_lable_keys[2].keycode)
+                x = 0;
+            else if (e.getKeyCode() == direction_lable_keys[3].keycode)
+                x = 0;
+            else return false;
+            updateBallLocation();
+            return true;
+        }
+    }
+
+    void updateBallLocation() {
+        ballLastLocation = ballLocation;
+        ballLocation = ballJPanels[x + 1][y + 1];
+        ballLastLocation.remove(ball);
+        ballLocation.add(ball);
+        ballLocation.validate();
+        ballLocation.repaint();
+        ballLastLocation.validate();
+        ballLastLocation.repaint();
+    }
+
+    public static class Range {
+        int high, low;
+
+        public Range(int low, int high) {
+            this.high = high;
+            this.low = low;
+        }
+
+        public Range(int range) {
+            this.high = range;
+            this.low = range;
+        }
+
+        public Range(char range) {
+            this.high = range;
+            this.low = range;
+        }
+
+        public Range(char low, char high) {
+            this.high = high;
+            this.low = low;
+        }
+
+        public static boolean isBetween(int target, Vector<Range> ranges) {
+            boolean isBetween = false;
+            System.out.println("comapring: " + target);
+            for (Range range : ranges) {
+                {
+                    System.out.println(range.low + "----" + range.high);
+                    isBetween |= range.isBetween(target);
+                }
+
+            }
+            return isBetween;
+        }
+
+        public static boolean isBetween(int low, int target, int high) {
+            return (low <= target && target <= high);
+        }
+
+        public boolean isBetween(int target) {
+            return isBetween(low, target, high);
+        }
+
     }
 
     public class Direction_Lable_Key {
@@ -396,7 +471,7 @@ public class Pc_controllerSetting extends JFrame {
             int oldVal = keycode;
             keycode = newVal;
             update();
-            System.out.println("duplicated="+ duplicated );
+            System.out.println("duplicated=" + duplicated);
             if (duplicated != null) {
                 duplicated.updateLabel(oldVal);
             }
@@ -411,38 +486,6 @@ public class Pc_controllerSetting extends JFrame {
         }
     }
 
-    Direction_Lable_Key[] direction_lable_keys;
-
-    boolean onKeyReleased(KeyEvent e) {
-        if (setting) {
-            return true;
-        } else {
-            if (e.getKeyCode() == direction_lable_keys[0].keycode)
-                y = 0;
-            else if (e.getKeyCode() == direction_lable_keys[1].keycode)
-                y = 0;
-            else if (e.getKeyCode() == direction_lable_keys[2].keycode)
-                x = 0;
-            else if (e.getKeyCode() == direction_lable_keys[3].keycode)
-                x = 0;
-            else return false;
-            updateBallLocation();
-            return true;
-        }
-    }
-
-    void updateBallLocation() {
-        ballLastLocation = ballLocation;
-        ballLocation = ballJPanels[x + 1][y + 1];
-        ballLastLocation.remove(ball);
-        ballLocation.add(ball);
-        ballLocation.validate();
-        ballLocation.repaint();
-        ballLastLocation.validate();
-        ballLastLocation.repaint();
-    }
-
-
     class MyDispatcher implements KeyEventDispatcher {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
@@ -456,58 +499,4 @@ public class Pc_controllerSetting extends JFrame {
             return (e.getKeyChar() != ' ');
         }
     }
-
-    private Direction_Lable_Key key_to_edit = null;
-
-    public static Vector<Range> direction_keys = new Vector<>();
-
-
-    public static class Range {
-        public static boolean isBetween(int target, Vector<Range> ranges) {
-            boolean isBetween = false;
-            System.out.println("comapring: " + target);
-            for (Range range : ranges) {
-                {
-                    System.out.println(range.low + "----" + range.high);
-                    isBetween |= range.isBetween(target);
-                }
-
-            }
-            return isBetween;
-        }
-
-        public static boolean isBetween(int low, int target, int high) {
-            return (low <= target && target <= high);
-        }
-
-        public boolean isBetween(int target) {
-            return isBetween(low, target, high);
-        }
-
-        int high, low;
-
-        public Range(int low, int high) {
-            this.high = high;
-            this.low = low;
-        }
-
-        public Range(int range) {
-            this.high = range;
-            this.low = range;
-        }
-
-        public Range(char range) {
-            this.high = range;
-            this.low = range;
-        }
-
-
-        public Range(char low, char high) {
-            this.high = high;
-            this.low = low;
-        }
-
-    }
-
-    JPanel panel_center;
 }

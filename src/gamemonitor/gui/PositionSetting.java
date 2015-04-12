@@ -1,5 +1,8 @@
 package gamemonitor.gui;
 
+import gamemonitor.gui.deviceinfo.DeviceInfo;
+import gamemonitor.gui.deviceinfo.DeviceInfoJPanel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -14,16 +17,16 @@ import java.util.Vector;
 
 public class PositionSetting extends JFrame {
 
-    private JPanel contentPane;
     public Vector<DeviceInfoJPanel> pendingRobotJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> movingRobotJPanels = new Vector<DeviceInfoJPanel>();
     JPanel robot_panel;
     JPanel moving_robot_panel;
+    private JPanel contentPane;
 
     /**
      * Create the frame.
      */
-    public PositionSetting()throws MalformedURLException, IOException {
+    public PositionSetting() throws MalformedURLException, IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
@@ -115,7 +118,7 @@ public class PositionSetting extends JFrame {
     }
 
     void setting() {
-        DeviceInfoJPanel settingRobot=null;
+        DeviceInfoJPanel settingRobot = null;
         for (DeviceInfoJPanel pendingRobotDeviceJPanel : pendingRobotJPanels)
             if (pendingRobotDeviceJPanel.isClicked && !pendingRobotDeviceJPanel.isSelected) {
                 settingRobot = pendingRobotDeviceJPanel;
