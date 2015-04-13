@@ -10,5 +10,13 @@ public class DeviceInfo {
     public static final byte ROBOT_STUDENT = 0x03;
     public static final byte ROBOT_DEADLINE = 0x04;
     public static final byte ROBOT_ASSIGNMENT = 0x05;
+    public byte deviceType;
+    public String ip;
+    public String name;
 
+    public DeviceInfo(byte deviceType, String ip, String name) {
+        this.deviceType = deviceType;
+        this.ip = ip;
+        this.name = name;
+    }
 }

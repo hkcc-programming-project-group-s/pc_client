@@ -1,6 +1,6 @@
 package pacmanrobot;
 
-import gamemonitor.gui.deviceinfo.DeviceInfo;
+import gamemonitor.gui.content.deviceinfo.DeviceInfo;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class MyImages {
     public static ImageIcon ICON_ROBOT_UNCLASSED = null;
 
     public static ImageIcon getIconByDeviceType(byte deviceType) throws MalformedURLException, IOException {
-        //TODO
+        //TODO add other types
         switch (deviceType) {
             case DeviceInfo.ROBOT_UNCLASSED:
                 if (ICON_ROBOT_UNCLASSED == null)

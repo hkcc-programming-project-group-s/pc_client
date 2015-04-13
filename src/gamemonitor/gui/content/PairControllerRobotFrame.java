@@ -1,6 +1,7 @@
 package gamemonitor.gui.content;
 
 import gamemonitor.gui.content.deviceinfo.DeviceInfo;
+import gamemonitor.gui.content.deviceinfo.DeviceInfoContainer;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanel;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanelHandler;
 
@@ -42,12 +43,12 @@ public class PairControllerRobotFrame extends JFrame implements DeviceInfoJPanel
         setContentPane(contentPane);
 
         // TODO load from server (messenger)
-        robotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"));
+       /* robotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"));
         robotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"));
         controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.3", "Controller 1"));
         controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.1", "Controller 2"));
         controllerJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.CONTROLLER, "192.168.1.2", "Controller 3"));
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));*/
 
         JPanel controlrobot_panel = new JPanel();
         contentPane.add(controlrobot_panel);
@@ -153,14 +154,19 @@ public class PairControllerRobotFrame extends JFrame implements DeviceInfoJPanel
     public void onDeviceInfoJPanelClicked(DeviceInfoJPanel clickedPanel) {
         System.out.println("onUnpairedDeviceInfoPanelClicked");
         try {
-            if (clickedPanel.deviceType == DeviceInfo.CONTROLLER) {
+            if (clickedPanel.deviceInfo.deviceType == DeviceInfo.CONTROLLER) {
                 controllerJPanels.forEach(p -> checkUnclickDeviceInfoJPanel(p, clickedPanel));
-            } else if (clickedPanel.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
+            } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
                 robotJPanels.forEach(p -> checkUnclickDeviceInfoJPanel(p, clickedPanel));
             }
         } catch (ConcurrentModificationException e) {
             System.out.println(e.toString());
         }
+    }
+
+    @Override
+    public Vector<DeviceInfoContainer> getDeviceInfoContainers() {
+        return null;
     }
 
     private void checkUnclickDeviceInfoJPanel(DeviceInfoJPanel checkPanel, DeviceInfoJPanel clickedPanel) {

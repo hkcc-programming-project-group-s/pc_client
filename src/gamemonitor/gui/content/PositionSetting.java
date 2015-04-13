@@ -34,8 +34,8 @@ public class PositionSetting extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new GridLayout(0, 1, 0, 10));
 
-        pendingRobotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"));
-        pendingRobotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"));
+        //pendingRobotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"));
+        //pendingRobotJPanels.add(new DeviceInfoJPanel(this, DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"));
 
         JPanel unseted_robot_panel = new JPanel();
         contentPane.add(unseted_robot_panel);
@@ -102,7 +102,7 @@ public class PositionSetting extends JFrame {
     public void onRobotSettingJPPanelsclick(DeviceInfoJPanel clickedPanel) {
         //System.out.print("onRobotSettingJPPanelsclick");
         try {
-            if (clickedPanel.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
+            if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
                 pendingRobotJPanels.forEach(p -> checkClick(p, clickedPanel));
             }
         } catch (ConcurrentModificationException e) {

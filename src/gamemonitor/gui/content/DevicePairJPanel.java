@@ -70,11 +70,11 @@ public class DevicePairJPanel extends JPanel {
         });
     }
 
-    public PairControllerRobotFrame getMaster() {
+   /* public PairControllerRobotFrame getMaster() {
         if (controllerJPanel.master_pair.equals(robotJPanel.master_pair))
             throw new IllegalComponentStateException();
         return controllerJPanel.master_pair;
-    }
+    }*/
 
     public void click() {
         isClicked = true;

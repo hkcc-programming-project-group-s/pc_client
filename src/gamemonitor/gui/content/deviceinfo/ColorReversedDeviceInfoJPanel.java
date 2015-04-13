@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
  */
 public class ColorReversedDeviceInfoJPanel extends DeviceInfoJPanel {
     public ColorReversedDeviceInfoJPanel(byte deviceType, String ip, String name, DeviceInfoJPanelHandler handler) throws MalformedURLException, IOException {
-        super(deviceType, ip, name, handler);
+        super(new DeviceInfo(deviceType, ip, name), handler);
     }
 
     public static Color unclicked_color = DeviceInfoJPanel.clicked_color;

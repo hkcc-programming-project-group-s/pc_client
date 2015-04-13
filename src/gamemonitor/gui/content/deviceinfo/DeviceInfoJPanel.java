@@ -30,18 +30,19 @@ public class DeviceInfoJPanel extends JPanel {
 
     public DeviceInfoContainer deviceInfoContainer;
     public DeviceInfoJPanel current = this;
-    public byte deviceType;
-    public String ip;
-    public String name;
+    public DeviceInfo deviceInfo;
     public boolean isClicked = false;
     public boolean isSelected = false;
 
+    JLabel lblIcon;
+    JLabel lblIp;
+    JLabel lblName;
     public void init() throws MalformedURLException, IOException {
         setup();
         unPair();
         setLayout(new BorderLayout(0, 0));
 
-        JLabel lblIcon = new JLabel(MyImages.getIconByDeviceType(deviceType));
+         lblIcon = new JLabel(MyImages.getIconByDeviceType(deviceInfo.deviceType));
         add(lblIcon, BorderLayout.WEST);
 
         JPanel panel = new JPanel();
@@ -49,21 +50,29 @@ public class DeviceInfoJPanel extends JPanel {
         panel.setLayout(new BorderLayout(0, 0));
         panel.setBackground(new Color(0, 0, 0, 0));
 
-        JLabel lblIp = new JLabel(ip);
+         lblIp = new JLabel(deviceInfo.ip);
         panel.add(lblIp, BorderLayout.NORTH);
 
-        JLabel lblName = new JLabel(name);
+         lblName = new JLabel(deviceInfo.name);
         panel.add(lblName, BorderLayout.SOUTH);
 
         System.out.println("new DeviceInfoJPanel: " + toString());
     }
 
-    public DeviceInfoJPanel(byte deviceType, String ip, String name, DeviceInfoJPanelHandler handler) throws MalformedURLException, IOException {
-        this.deviceType = deviceType;
-        this.ip = ip;
-        this.name = name;
+
+    public DeviceInfoJPanel(DeviceInfo deviceInfo, DeviceInfoJPanelHandler handler) throws MalformedURLException, IOException {
+        this.deviceInfo = deviceInfo;
         this.handler = handler;
         init();
+    }
+
+    public void update(DeviceInfo newDeviceInfo)throws MalformedURLException, IOException {
+        deviceInfo=newDeviceInfo;
+        lblIp.setText(deviceInfo.ip);
+        lblIcon.setIcon(MyImages.getIconByDeviceType(deviceInfo.deviceType));
+        lblName.setText(deviceInfo.name);
+        revalidate();
+        updateUI();
     }
 
     public static void setup() {
@@ -85,7 +94,7 @@ public class DeviceInfoJPanel extends JPanel {
         isClicked = true;
         setBackground(clicked_color);
         System.out.println("clicked DeviceInfoJPanel: " + this);
-
+        handler.onDeviceInfoJPanelClicked(this);
     }
 
     public void unclick() {
@@ -95,7 +104,7 @@ public class DeviceInfoJPanel extends JPanel {
     }
 
     public String toString() {
-        return deviceType + "," + name + "," + ip;
+        return deviceInfo.deviceType + "," + deviceInfo.name + "," + deviceInfo.ip;
     }
 
     public void unPair() {
