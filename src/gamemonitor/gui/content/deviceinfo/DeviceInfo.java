@@ -1,4 +1,4 @@
-package gamemonitor.gui.deviceinfo;
+package gamemonitor.gui.content.deviceinfo;
 
 /**
  * Created by 13058456a on 4/10/2015.

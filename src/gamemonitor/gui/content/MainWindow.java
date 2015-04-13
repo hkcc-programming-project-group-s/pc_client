@@ -1,4 +1,4 @@
-package gamemonitor.gui;
+package gamemonitor.gui.content;
 
 import javax.swing.*;
 import java.awt.*;

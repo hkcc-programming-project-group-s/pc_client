@@ -1,7 +1,7 @@
-package gamemonitor.gui;
+package gamemonitor.gui.content;
 
-import gamemonitor.gui.deviceinfo.DeviceInfo;
-import gamemonitor.gui.deviceinfo.DeviceInfoJPanel;
+import gamemonitor.gui.content.deviceinfo.DeviceInfo;
+import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

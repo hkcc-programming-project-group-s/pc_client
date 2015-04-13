@@ -1,4 +1,4 @@
-package gamemonitor.gui.deviceinfo;
+package gamemonitor.gui.content.deviceinfo;
 
 import java.awt.*;
 import java.io.IOException;

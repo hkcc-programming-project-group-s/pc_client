@@ -1,8 +1,7 @@
-package gamemonitor.gui.deviceinfo;
+package gamemonitor.gui.content.deviceinfo;
 
 import com.sun.istack.internal.NotNull;
 
-import java.awt.*;
 import java.util.Vector;
 
 /**
@@ -14,9 +13,7 @@ public interface DeviceInfoJPanelHandler {
 
     Vector<DeviceInfoContainer> getDeviceInfoContainers();
 
-    Component add(DeviceInfoJPanel deviceInfoJPanel);
 
-    void remove(DeviceInfoJPanel deviceInfoJPanel);
 
 
 }

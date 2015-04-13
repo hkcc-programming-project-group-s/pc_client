@@ -1,4 +1,4 @@
-package gamemonitor.gui.deviceinfo;
+package gamemonitor.gui.content.deviceinfo;
 
 import com.sun.istack.internal.NotNull;
 import pacmanrobot.MyImages;
@@ -18,8 +18,8 @@ public class DeviceInfoJPanel extends JPanel {
      * @throws IOException
      * @throws MalformedURLException
      */
-    public static  Color unclicked_color = new Color(227, 242, 255);
-    public static  Color clicked_color = new Color(143, 202, 255);
+    public static Color unclicked_color = new Color(227, 242, 255);
+    public static Color clicked_color = new Color(143, 202, 255);
     public static boolean setup = false;
     public static ImageIcon ROBOT_UNCLASSED;
     public static ImageIcon ROBOT_STUDENT;
@@ -135,8 +135,9 @@ public class DeviceInfoJPanel extends JPanel {
 
     @NotNull
     public void transfer(DeviceInfoContainer newDeviceInfoContainer) {
-        if (deviceInfoJPanelHandler != null)
-            deviceInfoJPanelHandler.remove(this);
+        if (newDeviceInfoContainer == deviceInfoContainer) return;
+        if (deviceInfoContainer != null)
+            deviceInfoContainer.remove(this);
         newDeviceInfoContainer.add(this);
     }
 

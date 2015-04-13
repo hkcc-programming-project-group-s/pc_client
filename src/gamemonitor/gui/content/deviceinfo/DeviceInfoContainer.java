@@ -1,4 +1,4 @@
-package gamemonitor.gui.deviceinfo;
+package gamemonitor.gui.content.deviceinfo;
 
 import com.sun.istack.internal.NotNull;
 
@@ -27,7 +27,10 @@ public class DeviceInfoContainer extends JPanel {
             comp.deviceInfoContainer.remove(comp);
         deviceInfoJPanels.add(comp);
         comp.deviceInfoContainer = this;
-        return super.add(comp);
+        Component result = super.add(comp);
+        revalidate();
+        updateUI();
+        return result;
     }
 
     @NotNull
@@ -35,5 +38,7 @@ public class DeviceInfoContainer extends JPanel {
         deviceInfoJPanels.remove(comp);
         comp.deviceInfoContainer = null;
         super.remove(comp);
+        revalidate();
+        updateUI();
     }
 }
