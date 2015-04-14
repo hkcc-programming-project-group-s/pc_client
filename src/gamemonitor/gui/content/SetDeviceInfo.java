@@ -1,16 +1,15 @@
 package gamemonitor.gui.content;
 
 //import com.sun.istack.internal.NotNull;
-import gamemonitor.gui.content.deviceinfo.DeviceInfoContainer;
+
 import gamemonitor.gui.content.deviceinfo.DeviceInfo;
+import gamemonitor.gui.content.deviceinfo.DeviceInfoContainer;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanel;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanelHandler;
 import gamemonitor.gui.frame.GameMonitorJFrame;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,15 +24,17 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
     public Vector<DeviceInfoJPanel> studentJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> deadlineJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> assignmentJPanels = new Vector<DeviceInfoJPanel>();*/
-    DeviceInfoContainer controller_panel;
-    DeviceInfoContainer unclasses_panel;
-    DeviceInfoContainer assignment_robot_panel;
-    DeviceInfoContainer student_robot_panel;
-    DeviceInfoContainer deadline_robot_panel;
-    private JPanel contentPane;
+    DeviceInfoContainer controller_panel = new DeviceInfoContainer("Controllers");
+    DeviceInfoContainer unclasses_panel = new DeviceInfoContainer("Unclassed Robots");
+    DeviceInfoContainer assignment_robot_panel = new DeviceInfoContainer("Assignment Robots");
+    DeviceInfoContainer student_robot_panel = new DeviceInfoContainer("Student Robots");
+    DeviceInfoContainer deadline_robot_panel = new DeviceInfoContainer("Deadline Robots");
     JPanel panel_center;
     MyDispatcher myDispatcher = new MyDispatcher();
-
+    DeviceInfoJPanel clicked = null;
+    Vector<DeviceInfoJPanel> unclassedJPanels = new Vector<>();
+    Vector<DeviceInfoContainer> deviceInfoContainers = new Vector<>();
+    private JPanel contentPane;
 
     /**
      * Create the frame.
@@ -43,7 +44,7 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         keyboardFocusManager.addKeyEventDispatcher(myDispatcher);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100,1080, 700);
+        setBounds(100, 100, 1080, 700);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -55,36 +56,26 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         contentPane.add(panel_center);
         panel_center.setLayout(new BorderLayout(0, 0));
 
-        unclasses_panel = new DeviceInfoContainer();
         panel_center.add(unclasses_panel, BorderLayout.NORTH);
-        unclasses_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Unclassed Robots", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
         unclasses_panel.setBackground(new Color(198, 228, 255));
 
         JPanel classed_robot = new JPanel();
         panel_center.add(classed_robot, BorderLayout.CENTER);
         classed_robot.setLayout(new GridLayout(1, 3, 10, 0));
 
-        assignment_robot_panel = new DeviceInfoContainer();
         classed_robot.add(assignment_robot_panel);
-        assignment_robot_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Assignment Robots", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
         assignment_robot_panel.setBackground(new Color(198, 228, 255));
 
-        student_robot_panel = new DeviceInfoContainer();
         classed_robot.add(student_robot_panel);
-        student_robot_panel.setBorder(new TitledBorder(null, "Student Robots", TitledBorder.CENTER, TitledBorder.TOP, null, null));
         student_robot_panel.setBackground(new Color(198, 228, 255));
 
-        deadline_robot_panel = new DeviceInfoContainer();
         classed_robot.add(deadline_robot_panel);
-        deadline_robot_panel.setBorder(new TitledBorder(null, "Deadline Robots", TitledBorder.CENTER, TitledBorder.TOP, null, null));
         deadline_robot_panel.setBackground(new Color(198, 228, 255));
 
         JPanel controller = new JPanel();
         panel_center.add(controller, BorderLayout.SOUTH);
         controller.setLayout(new BoxLayout(controller, BoxLayout.Y_AXIS));
 
-        controller_panel = new DeviceInfoContainer();
-        controller_panel.setBorder(new TitledBorder(null, "Controller", TitledBorder.CENTER, TitledBorder.TOP, null, null));
         controller_panel.setBackground(new Color(198, 228, 255));
         controller.add(controller_panel);
 
@@ -146,31 +137,29 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         assignment_robot_panel.updateUI();
     }
 
-   /* public void onControllerJPPanelsclick(DeviceInfoJPanel clickedPanel) {
-        //System.out.print("onControllerJPPanelsclick");
-        try {
-            if (clickedPanel.deviceInfo.deviceType == DeviceInfo.CONTROLLER) {
-                controllerJPanels.forEach(p -> checkClick(p, clickedPanel));
-            } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
-                unclassesRobotJPanels.forEach(p -> checkClick(p, clickedPanel));
-            } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_STUDENT) {
-                studentJPanels.forEach(p -> checkClick(p, clickedPanel));
-            } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_ASSIGNMENT) {
-                assignmentJPanels.forEach(p -> checkClick(p, clickedPanel));
-            } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_DEADLINE) {
-                deadlineJPanels.forEach(p -> checkClick(p, clickedPanel));
-            }
-        } catch (ConcurrentModificationException e) {
-            System.out.println(e.toString());
-        }
-    }
-*/
+    /* public void onControllerJPPanelsclick(DeviceInfoJPanel clickedPanel) {
+         //System.out.print("onControllerJPPanelsclick");
+         try {
+             if (clickedPanel.deviceInfo.deviceType == DeviceInfo.CONTROLLER) {
+                 controllerJPanels.forEach(p -> checkClick(p, clickedPanel));
+             } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
+                 unclassesRobotJPanels.forEach(p -> checkClick(p, clickedPanel));
+             } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_STUDENT) {
+                 studentJPanels.forEach(p -> checkClick(p, clickedPanel));
+             } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_ASSIGNMENT) {
+                 assignmentJPanels.forEach(p -> checkClick(p, clickedPanel));
+             } else if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_DEADLINE) {
+                 deadlineJPanels.forEach(p -> checkClick(p, clickedPanel));
+             }
+         } catch (ConcurrentModificationException e) {
+             System.out.println(e.toString());
+         }
+     }
+ */
     public void checkClick(DeviceInfoJPanel checkPanel, DeviceInfoJPanel clickedPanel) {
         if (!clickedPanel.equals(checkPanel))
             checkPanel.unclick();
     }
-
-    DeviceInfoJPanel clicked = null;
 
     void remove() {
         if (clicked == null) return;
@@ -179,10 +168,6 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         //TODO call messenger
 
     }
-
-
-    Vector<DeviceInfoJPanel> unclassedJPanels = new Vector<>();
-
 
     //@NotNull
     @Override
@@ -193,13 +178,8 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
             System.out.println("unclick");
             clicked.unclick();
         }
-        if (clicked == null || clicked != deviceInfoJPanel) {
-            clicked = deviceInfoJPanel;
-            clicked.click();
-        }
+        clicked = deviceInfoJPanel;
     }
-
-    Vector<DeviceInfoContainer> deviceInfoContainers = new Vector<>();
 
     @Override
     public Vector<DeviceInfoContainer> getDeviceInfoContainers() {
@@ -211,8 +191,9 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
     public boolean onLeave() {
         //TODO if student num != controller num
         int num_student = 0, num_controller = 0;
-        //for (DeviceInfoJPanel controllerNum : controllerJPanels) num_controller++;
-        //for (DeviceInfoJPanel studentNum : studentJPanels) num_student++;
+
+        for (DeviceInfoJPanel controllerNum : controller_panel.deviceInfoJPanels) num_controller++;
+        for (DeviceInfoJPanel studentNum : student_robot_panel.deviceInfoJPanels) num_student++;
 
         if (num_student > num_controller)
             JOptionPane.showConfirmDialog(this, "Too many student. Please remove some of student robot", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
@@ -242,26 +223,8 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         revalidate();
     }
 
-    class MyDispatcher implements KeyEventDispatcher {
-        @Override
-        public boolean dispatchKeyEvent(KeyEvent e) {
-            panel_center.grabFocus();
-            if (e.getID() == KeyEvent.KEY_PRESSED)
-                return onKeyPressed(e);
-            else if (e.getID() == KeyEvent.KEY_RELEASED)
-                try {
-                    return onKeyReleased(e);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            else if (e.getID() == KeyEvent.KEY_TYPED)
-                ;
-            return (e.getKeyChar() != ' ');
-        }
-    }
-
     boolean onKeyReleased(KeyEvent e) throws IOException {
-        if(clicked==null)return false;
+        if (clicked == null) return false;
         //System.out.println("I am here.");
         if (clicked.deviceInfo.deviceType != DeviceInfo.CONTROLLER) {
             if (e.getKeyCode() == KeyEvent.VK_A) {
@@ -283,6 +246,24 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
 
     boolean onKeyPressed(KeyEvent e) {
         return true;
+    }
+
+    class MyDispatcher implements KeyEventDispatcher {
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            panel_center.grabFocus();
+            if (e.getID() == KeyEvent.KEY_PRESSED)
+                return onKeyPressed(e);
+            else if (e.getID() == KeyEvent.KEY_RELEASED)
+                try {
+                    return onKeyReleased(e);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            else if (e.getID() == KeyEvent.KEY_TYPED)
+                ;
+            return (e.getKeyChar() != ' ');
+        }
     }
 }
 

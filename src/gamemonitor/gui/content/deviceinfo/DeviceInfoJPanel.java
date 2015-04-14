@@ -33,46 +33,16 @@ public class DeviceInfoJPanel extends JPanel {
     public DeviceInfo deviceInfo;
     public boolean isClicked = false;
     public boolean isSelected = false;
-
+    public DeviceInfoJPanelHandler deviceInfoJPanelHandler = null;
     JLabel lblIcon;
     JLabel lblIp;
     JLabel lblName;
-    public void init() throws MalformedURLException, IOException {
-        setup();
-        unPair();
-        setLayout(new BorderLayout(0, 0));
-
-         lblIcon = new JLabel(MyImages.getIconByDeviceType(deviceInfo.deviceType));
-        add(lblIcon, BorderLayout.WEST);
-
-        JPanel panel = new JPanel();
-        add(panel, BorderLayout.CENTER);
-        panel.setLayout(new BorderLayout(0, 0));
-        panel.setBackground(new Color(0, 0, 0, 0));
-
-         lblIp = new JLabel(deviceInfo.ip);
-        panel.add(lblIp, BorderLayout.NORTH);
-
-         lblName = new JLabel(deviceInfo.name);
-        panel.add(lblName, BorderLayout.SOUTH);
-
-        System.out.println("new DeviceInfoJPanel: " + toString());
-    }
 
 
     public DeviceInfoJPanel(DeviceInfo deviceInfo, DeviceInfoJPanelHandler handler) throws MalformedURLException, IOException {
         this.deviceInfo = deviceInfo;
         this.handler = handler;
         init();
-    }
-
-    public void update(DeviceInfo newDeviceInfo)throws MalformedURLException, IOException {
-        deviceInfo=newDeviceInfo;
-        lblIp.setText(deviceInfo.ip);
-        lblIcon.setIcon(MyImages.getIconByDeviceType(deviceInfo.deviceType));
-        lblName.setText(deviceInfo.name);
-        revalidate();
-        updateUI();
     }
 
     public static void setup() {
@@ -90,6 +60,37 @@ public class DeviceInfoJPanel extends JPanel {
         setup = true;
     }
 
+    public void init() throws MalformedURLException, IOException {
+        setup();
+        unPair();
+        setLayout(new BorderLayout(0, 0));
+
+        lblIcon = new JLabel(MyImages.getIconByDeviceType(deviceInfo.deviceType));
+        add(lblIcon, BorderLayout.WEST);
+
+        JPanel panel = new JPanel();
+        add(panel, BorderLayout.CENTER);
+        panel.setLayout(new BorderLayout(0, 0));
+        panel.setBackground(new Color(0, 0, 0, 0));
+
+        lblIp = new JLabel(deviceInfo.ip);
+        panel.add(lblIp, BorderLayout.NORTH);
+
+        lblName = new JLabel(deviceInfo.name);
+        panel.add(lblName, BorderLayout.SOUTH);
+
+        System.out.println("new DeviceInfoJPanel: " + toString());
+    }
+
+    public void update(DeviceInfo newDeviceInfo) throws MalformedURLException, IOException {
+        deviceInfo = newDeviceInfo;
+        lblIp.setText(deviceInfo.ip);
+        lblIcon.setIcon(MyImages.getIconByDeviceType(deviceInfo.deviceType));
+        lblName.setText(deviceInfo.name);
+        revalidate();
+        updateUI();
+    }
+
     public void click() {
         isClicked = true;
         setBackground(clicked_color);
@@ -98,7 +99,7 @@ public class DeviceInfoJPanel extends JPanel {
     }
 
     public void unclick() {
-        //System.out.println("un-click");
+        System.out.println("un-click");
         isClicked = false;
         setBackground(unclicked_color);
     }
@@ -149,7 +150,4 @@ public class DeviceInfoJPanel extends JPanel {
             deviceInfoContainer.remove(this);
         newDeviceInfoContainer.add(this);
     }
-
-
-    public DeviceInfoJPanelHandler deviceInfoJPanelHandler = null;
 }

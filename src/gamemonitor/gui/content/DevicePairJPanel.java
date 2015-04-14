@@ -13,13 +13,15 @@ public class DevicePairJPanel extends JPanel {
     public static final Color unclicked_color = new Color(143, 202, 255);
     public final DeviceInfoJPanel controllerJPanel;
     public final DeviceInfoJPanel robotJPanel;
+    private final PairControllerRobotFrame master;
     public boolean isClicked = false;
     public boolean isSelected = false;
 
     /**
      * Create the panel.
      */
-    public DevicePairJPanel(DeviceInfoJPanel controllerJPanel, DeviceInfoJPanel robotJPanel) {
+    public DevicePairJPanel(PairControllerRobotFrame pairControllerRobotFrame, DeviceInfoJPanel controllerJPanel, DeviceInfoJPanel robotJPanel) {
+        master = pairControllerRobotFrame;
         this.controllerJPanel = controllerJPanel;
         this.robotJPanel = robotJPanel;
         controllerJPanel.setBackground(new Color(0, 0, 0, 0));
@@ -79,13 +81,50 @@ public class DevicePairJPanel extends JPanel {
     public void click() {
         isClicked = true;
         setBackground(clicked_color);
-        PairControllerRobotFrame.onPairedDeviceInfoPanelClicked(this);
+        master.onPairedDeviceInfoPanelClicked(this);
+        //PairControllerRobotFrame.onPairedDeviceInfoPanelClicked(this);
         //ControllerRobotPairFrame.onUnpairedDeviceInfoPanelClicked(this);
     }
 
     public void unclick() {
         isClicked = false;
         setBackground(unclicked_color);
+    }
+
+    public void update(){
+        this.revalidate();
+        this.updateUI();
+        master.pair_panel.revalidate();
+        master.pair_panel.updateUI();
+        master.contentPane.revalidate();
+        master.contentPane.updateUI();
+//        master.getContentPane().revalidate();
+    }
+    public void pair() {
+        if (master.devicePairJPanels.contains(this))
+            return;
+        master.devicePairJPanels.add(this);
+        controllerJPanel.deviceInfoContainer.remove(controllerJPanel);
+        robotJPanel.deviceInfoContainer.remove(robotJPanel);
+        //for safety
+        System.out.println("pair! pair! pair!");
+        master.pair_panel.remove(this);
+        master.pair_panel.add(this);
+        System.out.println(master.pair_panel);
+        update();
+        System.out.println("paired");
+    }
+
+    public void unPair() {
+        System.out.println("un-pair! un-pair! un-pair!");
+        if (!master.devicePairJPanels.contains(this))
+            return;
+        master.devicePairJPanels.remove(this);
+        master.pair_panel.remove(this);
+        controllerJPanel.deviceInfoContainer.add(controllerJPanel);
+        robotJPanel.deviceInfoContainer.add(robotJPanel);
+        update();
+        System.out.println("un-paired");
     }
 
     static class LineBox extends Box {

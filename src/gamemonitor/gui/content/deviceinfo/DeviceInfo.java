@@ -19,4 +19,15 @@ public class DeviceInfo {
         this.ip = ip;
         this.name = name;
     }
+
+    public static boolean isRobot(byte deviceType) {
+        switch (deviceType) {
+            case ROBOT_ASSIGNMENT:
+            case ROBOT_STUDENT:
+            case ROBOT_DEADLINE:
+            case ROBOT_UNCLASSED:
+                return true;
+        }
+        return false;
+    }
 }

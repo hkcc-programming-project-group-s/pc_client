@@ -2,7 +2,6 @@ package gamemonitor.gui.content.deviceinfo;
 
 import com.sun.istack.internal.NotNull;
 
-import javax.swing.*;
 import java.util.Vector;
 
 /**

@@ -1,26 +1,24 @@
 package gamemonitor.gui.content;
 
 import gamemonitor.gui.content.deviceinfo.DeviceInfo;
+import gamemonitor.gui.content.deviceinfo.DeviceInfoContainer;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanel;
+import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanelHandler;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ConcurrentModificationException;
 import java.util.Vector;
 
-public class PositionSetting extends JFrame {
+public class PositionSetting extends JFrame implements DeviceInfoJPanelHandler, GameMonitorContent {
 
-    public Vector<DeviceInfoJPanel> pendingRobotJPanels = new Vector<DeviceInfoJPanel>();
-    public Vector<DeviceInfoJPanel> movingRobotJPanels = new Vector<DeviceInfoJPanel>();
-    JPanel robot_panel;
-    JPanel moving_robot_panel;
+    DeviceInfoContainer robot_panel = new DeviceInfoContainer("Pending Robot");
+    DeviceInfoContainer moving_robot_panel = new DeviceInfoContainer("Moving Robots");
+    DeviceInfoJPanel clicked = null;
     private JPanel contentPane;
 
     /**
@@ -41,11 +39,9 @@ public class PositionSetting extends JFrame {
         contentPane.add(unseted_robot_panel);
         unseted_robot_panel.setLayout(new BoxLayout(unseted_robot_panel, BoxLayout.X_AXIS));
 
-        robot_panel = new JPanel();
-        robot_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Pending Robot", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
-        robot_panel.setBackground(new Color(198, 228, 255));
         unseted_robot_panel.add(robot_panel);
-        robot_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        robot_panel.setBackground(new Color(198, 228, 255));
+        //robot_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
         JPanel button_panel = new JPanel();
         unseted_robot_panel.add(button_panel);
@@ -67,11 +63,9 @@ public class PositionSetting extends JFrame {
             }
         });
 
-        moving_robot_panel = new JPanel();
-        moving_robot_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Moving Robots", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
         moving_robot_panel.setBackground(new Color(143, 202, 255));
         contentPane.add(moving_robot_panel);
-        moving_robot_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        //moving_robot_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         initView();
     }
 
@@ -83,6 +77,7 @@ public class PositionSetting extends JFrame {
             public void run() {
                 try {
                     PositionSetting frame = new PositionSetting();
+                    frame.onEnter();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -91,15 +86,7 @@ public class PositionSetting extends JFrame {
         });
     }
 
-    void initView() {
-        pendingRobotJPanels.forEach(p -> robot_panel.add(p));
-        robot_panel.updateUI();
-
-        movingRobotJPanels.forEach(p -> moving_robot_panel.add(p));
-        moving_robot_panel.updateUI();
-    }
-
-    public void onRobotSettingJPPanelsclick(DeviceInfoJPanel clickedPanel) {
+    /*public void onRobotSettingJPPanelsclick(DeviceInfoJPanel clickedPanel) {
         //System.out.print("onRobotSettingJPPanelsclick");
         try {
             if (clickedPanel.deviceInfo.deviceType == DeviceInfo.ROBOT_UNCLASSED) {
@@ -109,6 +96,12 @@ public class PositionSetting extends JFrame {
             System.out.println(e.toString());
         }
 
+    }*/
+
+    void initView() {
+        robot_panel.deviceInfoJPanels.forEach(p -> robot_panel.add(p));
+
+        moving_robot_panel.deviceInfoJPanels.forEach(p -> moving_robot_panel.add(p));
     }
 
     private void checkClick(DeviceInfoJPanel checkPanel, DeviceInfoJPanel clickedPanel) {
@@ -119,23 +112,47 @@ public class PositionSetting extends JFrame {
 
     void setting() {
         DeviceInfoJPanel settingRobot = null;
-        for (DeviceInfoJPanel pendingRobotDeviceJPanel : pendingRobotJPanels)
+        for (DeviceInfoJPanel pendingRobotDeviceJPanel : robot_panel.deviceInfoJPanels)
             if (pendingRobotDeviceJPanel.isClicked && !pendingRobotDeviceJPanel.isSelected) {
                 settingRobot = pendingRobotDeviceJPanel;
             }
-        pendingRobotJPanels.remove(settingRobot);
-        try {
-            robot_panel.remove(settingRobot);
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        robot_panel.remove(settingRobot);
+
+        moving_robot_panel.add(settingRobot);
+
+    }
+
+    @Override
+    public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
+        System.out.println("this, here, there, right here");
+        //update color
+        if (clicked != null && clicked != deviceInfoJPanel) {
+            System.out.println("unclick");
+            clicked.unclick();
         }
-        robot_panel.updateUI();
-        movingRobotJPanels.add(settingRobot);
-        try {
-            moving_robot_panel.add(settingRobot);
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        moving_robot_panel.updateUI();
+        clicked = deviceInfoJPanel;
+    }
+
+    @Override
+    public Vector<DeviceInfoContainer> getDeviceInfoContainers() {
+        return null;
+    }
+
+    @Override
+    public boolean onLeave() {
+        return false;
+    }
+
+    @Override
+    public void onEnter() throws IOException {
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"), this));
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"), this));
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.6", "Robot 3"), this));
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.7", "Robot 4"), this));
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.8", "Robot 5"), this));
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.9", "Robot 6"), this));
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.155.132", "Robot 7"), this));
+        robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.155.131", "Robot 8"), this));
+        revalidate();
     }
 }

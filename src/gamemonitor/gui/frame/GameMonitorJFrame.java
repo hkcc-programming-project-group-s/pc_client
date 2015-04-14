@@ -7,5 +7,5 @@ import javax.swing.*;
  */
 public class GameMonitorJFrame extends JFrame {
     //public static GameMonitorJFrame current=null;
-    public static JFrame current=null;
+    public static JFrame current = null;
 }

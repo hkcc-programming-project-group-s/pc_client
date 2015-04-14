@@ -1,11 +1,11 @@
 package gamemonitor.gui.content.deviceinfo;
 
 import com.sun.istack.internal.NotNull;
-import gamemonitor.gui.frame.GameMonitorJFrame;
 import utils.WrapLayout;
 
 import javax.swing.*;
-import javax.swing.plaf.PanelUI;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.Vector;
 
@@ -14,16 +14,14 @@ import java.util.Vector;
  */
 public class DeviceInfoContainer extends JScrollPane {
     public Vector<DeviceInfoJPanel> deviceInfoJPanels;
+    public JPanel contentPanel = new JPanel();
 
-    public DeviceInfoContainer(Vector<DeviceInfoJPanel> deviceInfoJPanels) {
-        //setLayout(new ScrollPaneLayout());
-
-
+    public DeviceInfoContainer(Vector<DeviceInfoJPanel> deviceInfoJPanels, String name) {
+        setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), name, TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
         getViewport().setSize(1, 321654);
         this.deviceInfoJPanels = deviceInfoJPanels;
-        //WrapLayout wrapLayout = new WrapLayout();
-        //setLayout(wrapLayout);
-        setBackground(new Color(0, 0, 0, 0));
+        //setBackground(new Color(0, 0, 0, 0));
+        setBackground(new Color(198, 228, 255));
         setFocusable(false);
 
         contentPanel.setBackground(new Color(198, 228, 255));
@@ -32,10 +30,8 @@ public class DeviceInfoContainer extends JScrollPane {
         getViewport().add(contentPanel);
     }
 
-    public JPanel contentPanel = new JPanel();
-
-    public DeviceInfoContainer() {
-        this(new Vector<>());
+    public DeviceInfoContainer(String name) {
+        this(new Vector<>(), name);
     }
 
     @NotNull
@@ -44,7 +40,7 @@ public class DeviceInfoContainer extends JScrollPane {
             comp.deviceInfoContainer.remove(comp);
         deviceInfoJPanels.add(comp);
         comp.deviceInfoContainer = this;
-        Dimension preferedSize=comp.getPreferredSize();
+        Dimension preferedSize = comp.getPreferredSize();
         Component result = contentPanel.add(comp);
         comp.setPreferredSize(preferedSize);
         contentPanel.revalidate();
@@ -56,6 +52,7 @@ public class DeviceInfoContainer extends JScrollPane {
 
     @NotNull
     public void remove(DeviceInfoJPanel comp) {
+        if (!deviceInfoJPanels.contains(comp)) return;
         deviceInfoJPanels.remove(comp);
         comp.deviceInfoContainer = null;
         contentPanel.remove(comp);
