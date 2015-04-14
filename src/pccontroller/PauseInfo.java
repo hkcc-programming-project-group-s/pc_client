@@ -20,51 +20,22 @@ public class PauseInfo extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
-
-        JPanel panel_reason = new JPanel();
-        contentPane.add(panel_reason, BorderLayout.CENTER);
-        panel_reason.setLayout(new BorderLayout(0, 0));
-
-        JTextPane textPane = new JTextPane();
-        panel_reason.add(textPane, BorderLayout.CENTER);
-        textPane.setEditable(false);
-
-        JLabel GameResumeLabel = new JLabel("Game Pause Reason");
-        GameResumeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        contentPane.add(GameResumeLabel, BorderLayout.NORTH);
-
-        JPanel panel = new JPanel();
-        contentPane.add(panel, BorderLayout.SOUTH);
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        Component verticalStrut_1 = Box.createVerticalStrut(20);
-        panel.add(verticalStrut_1);
-
-        JPanel panel_bottom = new JPanel();
-        panel.add(panel_bottom);
-
-        JButton btnResum = new JButton("Resume");
-        btnResum.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
+        
+                JLabel GameResumeLabel = new JLabel("Game Pause Reason");
+                GameResumeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                contentPane.add(GameResumeLabel, BorderLayout.NORTH);
+                
+                        JTextPane textPane = new JTextPane();
+                        contentPane.add(textPane, BorderLayout.CENTER);
+                        textPane.setEditable(false);
+                        
+                                JButton btnRepairRobot = new JButton("Pair Controller & Robot");
+                                contentPane.add(btnRepairRobot, BorderLayout.SOUTH);
+                                btnRepairRobot.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnRepairRobot.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
         });
-        panel_bottom.setLayout(new BoxLayout(panel_bottom, BoxLayout.X_AXIS));
-        panel_bottom.add(btnResum);
-
-        Component horizontalStrut = Box.createHorizontalStrut(50);
-        panel_bottom.add(horizontalStrut);
-
-        JButton btnStop = new JButton("Stop");
-        panel_bottom.add(btnStop);
-
-        Component verticalStrut = Box.createVerticalStrut(20);
-        panel.add(verticalStrut);
-
-        JPanel repair_button_panel = new JPanel();
-        panel.add(repair_button_panel);
-
-        JButton btnRepairRobot = new JButton("Repair Robot");
-        repair_button_panel.add(btnRepairRobot);
     }
 
     /**

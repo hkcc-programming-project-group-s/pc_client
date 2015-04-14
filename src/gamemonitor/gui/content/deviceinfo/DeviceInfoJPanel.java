@@ -6,6 +6,7 @@ import pacmanrobot.Utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -118,7 +119,7 @@ public class DeviceInfoJPanel extends JPanel {
     private void setActionListener() {
         while (getMouseListeners().length > 0)
             removeMouseListener(getMouseListeners()[0]);
-        addMouseListener(new MouseListener() {
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 click();
@@ -131,15 +132,7 @@ public class DeviceInfoJPanel extends JPanel {
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
-                unclick();
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+                click();
             }
         });
     }

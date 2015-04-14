@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Vector;
 
 public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, GameMonitorContent {
@@ -30,7 +31,7 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
         keyboardFocusManager.addKeyEventDispatcher(myDispatcher);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 800, 600);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -125,7 +126,7 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
     public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
         System.out.println("this, here, there, right here");
         //update color
-        if (clicked != null && clicked.equals(deviceInfoJPanel))
+        if (clicked != null && !clicked.equals(deviceInfoJPanel))
             clicked.unclick();
         clicked = deviceInfoJPanel;
         //System.out.println("this, here, there, right here");
@@ -146,7 +147,23 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
 
     @Override
     public boolean onLeave() {
-        return false;//TODO
+        try {
+        //TODO sent robot types to server
+        // use messenger to send to server
+        if (new Random().nextBoolean())
+            throw new IOException();
+    } catch (IOException e1) {
+        //TODO network / server problem, retry
+        JOptionPane.showConfirmDialog(this, "Cannot connect to server. It may be the problem of network or server. Please wait a minute.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
+        return false;
+    } catch (Exception e2) {
+        //TODO network / server problem, retry
+        JOptionPane.showConfirmDialog(this, "Cannot connect to server. It may be the problem of network or server. Please wait a minute.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
+        //e2.printStackTrace();
+        System.out.println(e2.toString());
+        return false;
+    }
+        return true;
     }
 
     @Override
@@ -154,6 +171,8 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
         controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.3", "Controller 1"), this));
         controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.1", "Controller 2"), this));
         controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.2", "Controller 3"), this));
+        controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.10", "Controller 9"), this));
+        controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.11", "Controller 10"), this));
         robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"), this));
         robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"), this));
         robot_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.6", "Robot 3"), this));

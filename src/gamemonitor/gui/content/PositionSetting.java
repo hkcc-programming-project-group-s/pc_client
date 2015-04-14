@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Random;
 import java.util.Vector;
 
 public class PositionSetting extends JFrame implements DeviceInfoJPanelHandler, GameMonitorContent {
@@ -26,7 +27,7 @@ public class PositionSetting extends JFrame implements DeviceInfoJPanelHandler, 
      */
     public PositionSetting() throws MalformedURLException, IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 800, 600);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -126,7 +127,7 @@ public class PositionSetting extends JFrame implements DeviceInfoJPanelHandler, 
     public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
         System.out.println("this, here, there, right here");
         //update color
-        if (clicked != null && clicked.equals(deviceInfoJPanel)) {
+        if (clicked != null && !clicked.equals(deviceInfoJPanel)) {
             System.out.println("unclick");
             clicked.unclick();
         }
@@ -140,7 +141,27 @@ public class PositionSetting extends JFrame implements DeviceInfoJPanelHandler, 
 
     @Override
     public boolean onLeave() {
-        return false;
+        if(robot_panel.deviceInfoJPanels.size()>0){
+            JOptionPane.showConfirmDialog(this, "Some robot have not setting. Please set the position of the robot.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        try {
+            //TODO sent robot types to server
+            // use messenger to send to server
+            if (new Random().nextBoolean())
+                throw new IOException();
+        } catch (IOException e1) {
+            //TODO network / server problem, retry
+            JOptionPane.showConfirmDialog(this, "Cannot connect to server. It may be the problem of network or server. Please wait a minute.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (Exception e2) {
+            //TODO network / server problem, retry
+            JOptionPane.showConfirmDialog(this, "Cannot connect to server. It may be the problem of network or server. Please wait a minute.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
+            //e2.printStackTrace();
+            System.out.println(e2.toString());
+            return false;
+        }
+        return true;
     }
 
     @Override

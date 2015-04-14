@@ -11,11 +11,10 @@ import gamemonitor.gui.frame.GameMonitorJFrame;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Random;
 import java.util.Vector;
 
 public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, GameMonitorContent {
@@ -35,6 +34,7 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
     Vector<DeviceInfoJPanel> unclassedJPanels = new Vector<>();
     Vector<DeviceInfoContainer> deviceInfoContainers = new Vector<>();
     private JPanel contentPane;
+    public static final Color DEFAULT_BACKGROUND_COLOR = new Color(198, 228, 255);
 
     /**
      * Create the frame.
@@ -50,6 +50,30 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
+        JPanel panel = new JPanel();
+        contentPane.add(panel, BorderLayout.NORTH);
+        panel.setBackground(DEFAULT_BACKGROUND_COLOR);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        
+        JLabel lblNewLabel = new JLabel("Please choose one robot and enter [A], [S] or [D] keyword.");
+        lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(lblNewLabel);
+        
+        JLabel lblNewLabel_1 = new JLabel("A : Assignment Robot");
+        lblNewLabel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(lblNewLabel_1);
+        
+        JLabel lblNewLabel_2 = new JLabel("S : Student Robot");
+        lblNewLabel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(lblNewLabel_2);
+        
+        JLabel lblNewLabel_3 = new JLabel("D : Deadline Robot");
+        lblNewLabel_3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(lblNewLabel_3);
+        
+        Component verticalStrut = Box.createVerticalStrut(20);
+        panel.add(verticalStrut);
+
 
         panel_center = new JPanel();
         panel_center.setBorder(null);
@@ -57,26 +81,26 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         panel_center.setLayout(new BorderLayout(0, 0));
 
         panel_center.add(unclasses_panel, BorderLayout.NORTH);
-        unclasses_panel.setBackground(new Color(198, 228, 255));
+        unclasses_panel.setBackground(DEFAULT_BACKGROUND_COLOR);
 
         JPanel classed_robot = new JPanel();
         panel_center.add(classed_robot, BorderLayout.CENTER);
         classed_robot.setLayout(new GridLayout(1, 3, 10, 0));
 
         classed_robot.add(assignment_robot_panel);
-        assignment_robot_panel.setBackground(new Color(198, 228, 255));
+        assignment_robot_panel.setBackground(DEFAULT_BACKGROUND_COLOR);
 
         classed_robot.add(student_robot_panel);
-        student_robot_panel.setBackground(new Color(198, 228, 255));
+        student_robot_panel.setBackground(DEFAULT_BACKGROUND_COLOR);
 
         classed_robot.add(deadline_robot_panel);
-        deadline_robot_panel.setBackground(new Color(198, 228, 255));
+        deadline_robot_panel.setBackground(DEFAULT_BACKGROUND_COLOR);
 
         JPanel controller = new JPanel();
         panel_center.add(controller, BorderLayout.SOUTH);
         controller.setLayout(new BoxLayout(controller, BoxLayout.Y_AXIS));
 
-        controller_panel.setBackground(new Color(198, 228, 255));
+        controller_panel.setBackground(DEFAULT_BACKGROUND_COLOR);
         controller.add(controller_panel);
 
         JPanel panel_bottom = new JPanel();
@@ -174,7 +198,7 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
     public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
         System.out.println("this, here, there, right here");
         //update color
-        if (clicked != null && clicked.equals(deviceInfoJPanel)) {
+        if (clicked != null && !clicked.equals(deviceInfoJPanel)) {
             System.out.println("unclick");
             clicked.unclick();
         }
@@ -202,9 +226,26 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         if (num_controller != num_student)
             return false;
 
-        //TODO sent robot types to server
+        try {
+            //TODO sent robot types to server
+            // use messenger to send to server
+            if (new Random().nextBoolean())
+                throw new IOException();
+        } catch (IOException e1) {
+            //TODO network / server problem, retry
+            JOptionPane.showConfirmDialog(this, "Cannot connect to server. It may be the problem of network or server. Please wait a minute.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (Exception e2) {
+            //TODO network / server problem, retry
+            JOptionPane.showConfirmDialog(this, "Cannot connect to server. It may be the problem of network or server. Please wait a minute.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
+            //e2.printStackTrace();
+            System.out.println(e2.toString());
+            return false;
+        }
+
         System.out.println();
         return true;
+
     }
 
     @Override
