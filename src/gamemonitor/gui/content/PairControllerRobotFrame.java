@@ -125,7 +125,7 @@ public class PairControllerRobotFrame extends JFrame implements DeviceInfoJPanel
 
     public void onPairedDeviceInfoPanelClicked(DevicePairJPanel clickedPanel) {
         //update color
-        if (clickedPairJPanel != null)
+        if (clickedPairJPanel != null && !clickedPairJPanel.equals(clickedPanel))
             clickedPairJPanel.unclick();
         this.clickedPairJPanel = clickedPanel;
     }
@@ -146,11 +146,11 @@ public class PairControllerRobotFrame extends JFrame implements DeviceInfoJPanel
         //System.out.println("this, here, there, right here");
         //update color
         if (DeviceInfo.isRobot(clickedDeviceInfoJPanel.deviceInfo.deviceType)) {
-            if (clickedRobotJPanel != null && clickedRobotJPanel != clickedDeviceInfoJPanel)
+            if (clickedRobotJPanel != null && !clickedRobotJPanel.equals(clickedDeviceInfoJPanel))
                 clickedRobotJPanel.unclick();
             clickedRobotJPanel = clickedDeviceInfoJPanel;
         } else {
-            if (clickedControllerJPanel != null && clickedControllerJPanel != clickedDeviceInfoJPanel)
+            if (clickedControllerJPanel != null && !clickedControllerJPanel.equals(clickedDeviceInfoJPanel))
                 clickedControllerJPanel.unclick();
             clickedControllerJPanel = clickedDeviceInfoJPanel;
         }

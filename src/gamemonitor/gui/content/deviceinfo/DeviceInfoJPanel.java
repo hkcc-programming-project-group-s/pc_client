@@ -112,6 +112,7 @@ public class DeviceInfoJPanel extends JPanel {
         isSelected = false;
         unclick();
         setActionListener();
+        setFocusable(true);
     }
 
     private void setActionListener() {

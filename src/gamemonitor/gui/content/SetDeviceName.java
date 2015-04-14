@@ -125,7 +125,7 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
     public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
         System.out.println("this, here, there, right here");
         //update color
-        if (clicked != null && clicked != deviceInfoJPanel)
+        if (clicked != null && clicked.equals(deviceInfoJPanel))
             clicked.unclick();
         clicked = deviceInfoJPanel;
         //System.out.println("this, here, there, right here");

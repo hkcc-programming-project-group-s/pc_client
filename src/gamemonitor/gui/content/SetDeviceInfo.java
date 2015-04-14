@@ -174,7 +174,7 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
     public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
         System.out.println("this, here, there, right here");
         //update color
-        if (clicked != null && clicked != deviceInfoJPanel) {
+        if (clicked != null && clicked.equals(deviceInfoJPanel)) {
             System.out.println("unclick");
             clicked.unclick();
         }
