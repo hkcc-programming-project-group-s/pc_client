@@ -1,22 +1,17 @@
 package gamemonitor.gui.content;
 
+import gamemonitor.gui.content.deviceinfo.DeviceInfo;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoContainer;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanel;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanelHandler;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
-import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Vector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,6 +23,7 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
 	private JPanel contentPane;
 	JPanel controller_panel;
 	JPanel robot_panel;
+	MyDispatcher myDispatcher = new MyDispatcher();
 
 	/**
 	 * Launch the application.
@@ -49,6 +45,9 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
 	 * Create the frame.
 	 */
 	public SetDeviceName() {
+		KeyboardFocusManager keyboardFocusManager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		keyboardFocusManager.addKeyEventDispatcher(myDispatcher);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -79,8 +78,18 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
 		JButton btnRename = new JButton("Rename");
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(myDispatcher);
+				Object name = JOptionPane.showInputDialog(getContentPane(), "What is the new name?", "Device Name", JOptionPane.QUESTION_MESSAGE, null, null, null);
+				System.out.println(name);
+				if (name != null) {
+					try {
+						clicked.update(new DeviceInfo(clicked.deviceInfo.deviceType,clicked.deviceInfo.ip,(String)name));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					//TODO message(send new name)
 			}
-		});
+		}});
 		button_panel.add(btnRename);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
@@ -110,8 +119,9 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
 		//update color
 		if (clicked != null)
 			clicked.unclick();
+		if(clicked==null||clicked!=deviceInfoJPanel){
 		clicked = deviceInfoJPanel;
-		clicked.click();
+		clicked.click();}
 	}
 
 	Vector<DeviceInfoContainer> deviceInfoContainers = new Vector<>();
@@ -120,6 +130,23 @@ public class SetDeviceName extends JFrame implements DeviceInfoJPanelHandler, Ga
 	public Vector<DeviceInfoContainer> getDeviceInfoContainers() {
 		return deviceInfoContainers;
 	}
+
+	class MyDispatcher implements KeyEventDispatcher {
+		@Override
+		public boolean dispatchKeyEvent(KeyEvent e) {
+			contentPane.grabFocus();
+			if (e.getID() == KeyEvent.KEY_PRESSED)
+				return onKeyPressed(e);
+			else if (e.getID() == KeyEvent.KEY_RELEASED)
+				return onKeyReleased(e);
+			else if (e.getID() == KeyEvent.KEY_TYPED)
+				;
+			return (e.getKeyChar() != ' ');
+		}
+	}
+	boolean onKeyPressed(KeyEvent e){return true;}
+
+	boolean onKeyReleased(KeyEvent e){return true;}
 
 	@Override
 	public boolean onLeave() {

@@ -30,6 +30,18 @@ public class MyImages {
                 if (ICON_CONTROLLER == null)
                     ICON_CONTROLLER = Utils.getImageIcon(CONTROLLER);
                 return ICON_CONTROLLER;
+            case DeviceInfo.ROBOT_ASSIGNMENT:
+                if (ICON_CONTROLLER == null)
+                    ICON_CONTROLLER = Utils.getImageIcon(ROBOT_ASSIGNMENT);
+                return ICON_CONTROLLER;
+            case DeviceInfo.ROBOT_DEADLINE:
+                if (ICON_CONTROLLER == null)
+                    ICON_CONTROLLER = Utils.getImageIcon(ROBOT_DEADLINE);
+                return ICON_CONTROLLER;
+            case DeviceInfo.ROBOT_STUDENT:
+                if (ICON_CONTROLLER == null)
+                    ICON_CONTROLLER = Utils.getImageIcon(ROBOT_STUDENT);
+                return ICON_CONTROLLER;
             default:
                 return null;
         }

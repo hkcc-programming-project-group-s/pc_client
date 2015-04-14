@@ -1,10 +1,11 @@
 package gamemonitor.gui.content;
 
-import com.sun.istack.internal.NotNull;
+//import com.sun.istack.internal.NotNull;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoContainer;
 import gamemonitor.gui.content.deviceinfo.DeviceInfo;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanel;
 import gamemonitor.gui.content.deviceinfo.DeviceInfoJPanelHandler;
+import gamemonitor.gui.frame.GameMonitorJFrame;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -16,16 +17,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ConcurrentModificationException;
 import java.util.Vector;
 
 public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, GameMonitorContent {
-    public Vector<DeviceInfoJPanel> controllerJPanels = new Vector<DeviceInfoJPanel>();
+    /*public Vector<DeviceInfoJPanel> controllerJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> unclassesRobotJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> studentJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> deadlineJPanels = new Vector<DeviceInfoJPanel>();
-    public Vector<DeviceInfoJPanel> assignmentJPanels = new Vector<DeviceInfoJPanel>();
-    JPanel controller_panel;
+    public Vector<DeviceInfoJPanel> assignmentJPanels = new Vector<DeviceInfoJPanel>();*/
+    DeviceInfoContainer controller_panel;
     DeviceInfoContainer unclasses_panel;
     DeviceInfoContainer assignment_robot_panel;
     DeviceInfoContainer student_robot_panel;
@@ -43,30 +43,25 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         keyboardFocusManager.addKeyEventDispatcher(myDispatcher);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 600);
+        setBounds(100, 100,1080, 700);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
-        controllerJPanels.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.3", "Controller 1"), this));
-        controllerJPanels.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.1", "Controller 2"), this));
-        controllerJPanels.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.2", "Controller 3"), this));
-        unclassesRobotJPanels.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"), this));
-        unclassesRobotJPanels.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"), this));
 
         panel_center = new JPanel();
         panel_center.setBorder(null);
         contentPane.add(panel_center);
-        panel_center.setLayout(new GridLayout(3, 1, 0, 10));
+        panel_center.setLayout(new BorderLayout(0, 0));
 
         unclasses_panel = new DeviceInfoContainer();
-        panel_center.add(unclasses_panel);
+        panel_center.add(unclasses_panel, BorderLayout.NORTH);
         unclasses_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Unclassed Robots", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
         unclasses_panel.setBackground(new Color(198, 228, 255));
 
         JPanel classed_robot = new JPanel();
-        panel_center.add(classed_robot);
+        panel_center.add(classed_robot, BorderLayout.CENTER);
         classed_robot.setLayout(new GridLayout(1, 3, 10, 0));
 
         assignment_robot_panel = new DeviceInfoContainer();
@@ -85,10 +80,10 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         deadline_robot_panel.setBackground(new Color(198, 228, 255));
 
         JPanel controller = new JPanel();
-        panel_center.add(controller);
+        panel_center.add(controller, BorderLayout.SOUTH);
         controller.setLayout(new BoxLayout(controller, BoxLayout.Y_AXIS));
 
-        controller_panel = new JPanel();
+        controller_panel = new DeviceInfoContainer();
         controller_panel.setBorder(new TitledBorder(null, "Controller", TitledBorder.CENTER, TitledBorder.TOP, null, null));
         controller_panel.setBackground(new Color(198, 228, 255));
         controller.add(controller_panel);
@@ -124,6 +119,8 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
             public void run() {
                 try {
                     SetDeviceInfo frame = new SetDeviceInfo();
+                    GameMonitorJFrame.current = frame;
+                    frame.onEnter();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -133,23 +130,23 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
     }
 
     void initView() {
-        controllerJPanels.forEach(p -> controller_panel.add(p));
+        controller_panel.deviceInfoJPanels.forEach(p -> controller_panel.add(p));
         controller_panel.updateUI();
 
-        unclassesRobotJPanels.forEach(p -> unclasses_panel.add(p));
+        unclasses_panel.deviceInfoJPanels.forEach(p -> unclasses_panel.add(p));
         unclasses_panel.updateUI();
 
-        studentJPanels.forEach(p -> student_robot_panel.add(p));
+        student_robot_panel.deviceInfoJPanels.forEach(p -> student_robot_panel.add(p));
         student_robot_panel.updateUI();
 
-        deadlineJPanels.forEach(p -> deadline_robot_panel.add(p));
+        deadline_robot_panel.deviceInfoJPanels.forEach(p -> deadline_robot_panel.add(p));
         deadline_robot_panel.updateUI();
 
-        assignmentJPanels.forEach(p -> assignment_robot_panel.add(p));
+        assignment_robot_panel.deviceInfoJPanels.forEach(p -> assignment_robot_panel.add(p));
         assignment_robot_panel.updateUI();
     }
 
-    public void onControllerJPPanelsclick(DeviceInfoJPanel clickedPanel) {
+   /* public void onControllerJPPanelsclick(DeviceInfoJPanel clickedPanel) {
         //System.out.print("onControllerJPPanelsclick");
         try {
             if (clickedPanel.deviceInfo.deviceType == DeviceInfo.CONTROLLER) {
@@ -167,14 +164,17 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
             System.out.println(e.toString());
         }
     }
-
+*/
     public void checkClick(DeviceInfoJPanel checkPanel, DeviceInfoJPanel clickedPanel) {
         if (!clickedPanel.equals(checkPanel))
             checkPanel.unclick();
     }
 
+    DeviceInfoJPanel clicked = null;
+
     void remove() {
         if (clicked == null) return;
+        //System.out.println("REMOVE HERE!!!");
         clicked.deviceInfoContainer.remove(clicked);
         //TODO call messenger
 
@@ -184,19 +184,19 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
     Vector<DeviceInfoJPanel> unclassedJPanels = new Vector<>();
 
 
-    DeviceInfoJPanel clicked = null;
-
-    @NotNull
+    //@NotNull
     @Override
     public void onDeviceInfoJPanelClicked(DeviceInfoJPanel deviceInfoJPanel) {
         System.out.println("this, here, there, right here");
         //update color
-        if (clicked != null && clicked != deviceInfoJPanel){
+        if (clicked != null && clicked != deviceInfoJPanel) {
             System.out.println("unclick");
-            clicked.unclick();}
-        if(clicked ==null||clicked !=deviceInfoJPanel){
-         clicked = deviceInfoJPanel;
-            clicked.click();}
+            clicked.unclick();
+        }
+        if (clicked == null || clicked != deviceInfoJPanel) {
+            clicked = deviceInfoJPanel;
+            clicked.click();
+        }
     }
 
     Vector<DeviceInfoContainer> deviceInfoContainers = new Vector<>();
@@ -206,18 +206,19 @@ public class SetDeviceInfo extends JFrame implements DeviceInfoJPanelHandler, Ga
         return deviceInfoContainers;
     }
 
+
     @Override
     public boolean onLeave() {
         //TODO if student num != controller num
         int num_student = 0, num_controller = 0;
-        for(DeviceInfoJPanel controllerNum:controllerJPanels) num_controller++;
-        for(DeviceInfoJPanel studentNum:studentJPanels) num_student++;
+        //for (DeviceInfoJPanel controllerNum : controllerJPanels) num_controller++;
+        //for (DeviceInfoJPanel studentNum : studentJPanels) num_student++;
 
         if (num_student > num_controller)
             JOptionPane.showConfirmDialog(this, "Too many student. Please remove some of student robot", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
-        else if(num_student<num_controller)
+        else if (num_student < num_controller)
             JOptionPane.showConfirmDialog(this, "Too many controller. Please remove controller or change robot to student robot", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
-if (num_controller != num_student)
+        if (num_controller != num_student)
             return false;
 
         //TODO sent robot types to server
@@ -226,8 +227,19 @@ if (num_controller != num_student)
     }
 
     @Override
-    public void onEnter() {
-
+    public void onEnter() throws IOException {
+        controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.3", "Controller 1"), this));
+        controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.1", "Controller 2"), this));
+        controller_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.CONTROLLER, "192.168.1.2", "Controller 3"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.4", "Robot 1"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.5", "Robot 2"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.6", "Robot 3"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.7", "Robot 4"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.8", "Robot 5"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.1.9", "Robot 6"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.155.132", "Robot 7"), this));
+        unclasses_panel.add(new DeviceInfoJPanel(new DeviceInfo(DeviceInfo.ROBOT_UNCLASSED, "192.168.155.131", "Robot 8"), this));
+        revalidate();
     }
 
     class MyDispatcher implements KeyEventDispatcher {
@@ -237,35 +249,39 @@ if (num_controller != num_student)
             if (e.getID() == KeyEvent.KEY_PRESSED)
                 return onKeyPressed(e);
             else if (e.getID() == KeyEvent.KEY_RELEASED)
-                return onKeyReleased(e);
+                try {
+                    return onKeyReleased(e);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             else if (e.getID() == KeyEvent.KEY_TYPED)
                 ;
             return (e.getKeyChar() != ' ');
         }
     }
 
-    boolean onKeyReleased(KeyEvent e) {
+    boolean onKeyReleased(KeyEvent e) throws IOException {
+        if(clicked==null)return false;
         //System.out.println("I am here.");
-        if(clicked.deviceInfo.deviceType!=DeviceInfo.CONTROLLER) {
-            System.out.println("I am here.");
-            if (e.getKeyCode() == KeyEvent.VK_A)
-                // DeviceInfoJPanel.transfer(assignmentJPanels);
-                System.out.println("I am assignment.")
-                        ;
-            else if (e.getKeyCode() == KeyEvent.VK_D)
-                System.out.println("I am deadline.")
-                        // DeviceInfoJPanel.transfer(deadlineJPanels);
-                        ;
-            else if (e.getKeyCode() == KeyEvent.VK_S)
-                System.out.println("I am student.")
-                        // DeviceInfoJPanel.transfer(studentJPanels);
-                        ;
-            else return  false;
+        if (clicked.deviceInfo.deviceType != DeviceInfo.CONTROLLER) {
+            if (e.getKeyCode() == KeyEvent.VK_A) {
+                clicked.transfer(assignment_robot_panel);
+                clicked.update(new DeviceInfo(DeviceInfo.ROBOT_ASSIGNMENT, clicked.deviceInfo.ip, clicked.deviceInfo.name));
+                System.out.println("changed to assignment.");
+            } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                clicked.transfer(deadline_robot_panel);
+                clicked.update(new DeviceInfo(DeviceInfo.ROBOT_DEADLINE, clicked.deviceInfo.ip, clicked.deviceInfo.name));
+                System.out.println("changed to deadline.");
+            } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                clicked.transfer(student_robot_panel);
+                clicked.update(new DeviceInfo(DeviceInfo.ROBOT_STUDENT, clicked.deviceInfo.ip, clicked.deviceInfo.name));
+                System.out.println("changed to student.");
+            } else return false;
         }
         return true;
     }
 
-   boolean onKeyPressed(KeyEvent e) {
+    boolean onKeyPressed(KeyEvent e) {
         return true;
     }
 }
