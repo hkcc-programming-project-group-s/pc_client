@@ -20,21 +20,21 @@ public class PauseInfo extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
-        
-                JLabel GameResumeLabel = new JLabel("Game Pause Reason");
-                GameResumeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                contentPane.add(GameResumeLabel, BorderLayout.NORTH);
-                
-                        JTextPane textPane = new JTextPane();
-                        contentPane.add(textPane, BorderLayout.CENTER);
-                        textPane.setEditable(false);
-                        
-                                JButton btnRepairRobot = new JButton("Pair Controller & Robot");
-                                contentPane.add(btnRepairRobot, BorderLayout.SOUTH);
-                                btnRepairRobot.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel GameResumeLabel = new JLabel("Game Pause Reason");
+        GameResumeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(GameResumeLabel, BorderLayout.NORTH);
+
+        JTextPane textPane = new JTextPane();
+        contentPane.add(textPane, BorderLayout.CENTER);
+        textPane.setEditable(false);
+
+        JButton btnRepairRobot = new JButton("Pair Controller & Robot");
+        contentPane.add(btnRepairRobot, BorderLayout.SOUTH);
+        btnRepairRobot.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnRepairRobot.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
+            public void actionPerformed(ActionEvent e) {
+            }
         });
     }
 

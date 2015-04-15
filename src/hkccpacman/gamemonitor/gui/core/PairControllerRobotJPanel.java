@@ -25,13 +25,14 @@ public class PairControllerRobotJPanel extends JPanel implements DeviceInfoJPane
     DeviceInfoJPanel clickedControllerJPanel = null;
     DeviceInfoJPanel clickedRobotJPanel = null;
     DevicePairJPanel clickedPairJPanel = null;
+
     /**
      * Create the frame.
      *
      * @throws IOException
      * @throws MalformedURLException
      */
-    public PairControllerRobotJPanel(){
+    public PairControllerRobotJPanel() {
         setBounds(100, 100, 800, 600);
         setBorder(new EmptyBorder(5, 5, 5, 5));
         //getContentPane().add(contentPane);
@@ -87,7 +88,6 @@ public class PairControllerRobotJPanel extends JPanel implements DeviceInfoJPane
         //pair_panel.setBackground(new Color(143, 202, 255));
         //pair_panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Controller Robot Pair",
 //                TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
-
 
 
         initView();

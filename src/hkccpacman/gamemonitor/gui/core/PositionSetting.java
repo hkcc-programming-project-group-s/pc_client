@@ -23,7 +23,7 @@ public class PositionSetting extends JPanel implements DeviceInfoJPanelHandler, 
     /**
      * Create the frame.
      */
-    public PositionSetting(){
+    public PositionSetting() {
         setBounds(100, 100, 800, 600);
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(new GridLayout(0, 1, 0, 10));
@@ -119,7 +119,7 @@ public class PositionSetting extends JPanel implements DeviceInfoJPanelHandler, 
 
     @Override
     public boolean onLeave() {
-        if(robot_panel.deviceInfoJPanels.size()>0){
+        if (robot_panel.deviceInfoJPanels.size() > 0) {
             JOptionPane.showConfirmDialog(this, "Some robot have not setting. Please set the position of the robot.", "title", JOptionPane.YES_OPTION, JOptionPane.ERROR_MESSAGE);
             return false;
         }

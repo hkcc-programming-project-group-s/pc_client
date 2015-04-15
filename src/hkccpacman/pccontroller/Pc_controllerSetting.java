@@ -12,8 +12,8 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Vector;
 
-import static java.awt.event.KeyEvent.*;
 import static hkccpacman.pccontroller.Pc_controllerSetting.Range.isBetween;
+import static java.awt.event.KeyEvent.*;
 
 public class Pc_controllerSetting extends JFrame {
     public static Vector<Range> direction_keys = new Vector<>();

@@ -6,17 +6,21 @@ import hkccpacman.gamemonitor.gui.core.deviceinfo.DeviceInfo;
 import hkccpacman.gamemonitor.gui.core.deviceinfo.DeviceInfoContainer;
 import hkccpacman.gamemonitor.gui.core.deviceinfo.DeviceInfoJPanel;
 import hkccpacman.gamemonitor.gui.core.deviceinfo.DeviceInfoJPanelHandler;
-//import hkccpacman.gamemonitor.gui.frame.GameMonitorJFrame;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Vector;
 
+//import hkccpacman.gamemonitor.gui.frame.GameMonitorJFrame;
+
 public class SetDeviceInfo extends JPanel implements DeviceInfoJPanelHandler, GameMonitorContent {
+    public static final Color DEFAULT_BACKGROUND_COLOR = new Color(198, 228, 255);
     /*public Vector<DeviceInfoJPanel> controllerJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> unclassesRobotJPanels = new Vector<DeviceInfoJPanel>();
     public Vector<DeviceInfoJPanel> studentJPanels = new Vector<DeviceInfoJPanel>();
@@ -32,7 +36,6 @@ public class SetDeviceInfo extends JPanel implements DeviceInfoJPanelHandler, Ga
     DeviceInfoJPanel clicked = null;
     Vector<DeviceInfoJPanel> unclassedJPanels = new Vector<>();
     Vector<DeviceInfoContainer> deviceInfoContainers = new Vector<>();
-    public static final Color DEFAULT_BACKGROUND_COLOR = new Color(198, 228, 255);
 
     /**
      * Create the frame.
@@ -49,23 +52,23 @@ public class SetDeviceInfo extends JPanel implements DeviceInfoJPanelHandler, Ga
         add(panel, BorderLayout.NORTH);
         panel.setBackground(DEFAULT_BACKGROUND_COLOR);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        
+
         JLabel lblNewLabel = new JLabel("Please choose one robot and enter [A], [S] or [D] keyword.");
         lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lblNewLabel);
-        
+
         JLabel lblNewLabel_1 = new JLabel("A : Assignment Robot");
         lblNewLabel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lblNewLabel_1);
-        
+
         JLabel lblNewLabel_2 = new JLabel("S : Student Robot");
         lblNewLabel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lblNewLabel_2);
-        
+
         JLabel lblNewLabel_3 = new JLabel("D : Deadline Robot");
         lblNewLabel_3.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lblNewLabel_3);
-        
+
         Component verticalStrut = Box.createVerticalStrut(20);
         panel.add(verticalStrut);
 

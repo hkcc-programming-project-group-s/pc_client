@@ -1,9 +1,8 @@
 package hkccpacman.gamemonitor.gui.frame;
 
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ControlJPanel extends JPanel {
 

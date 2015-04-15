@@ -12,7 +12,7 @@ import java.util.Vector;
 public class ContentJPanel extends AbstractCardJPanel {
 
     private final GameMonitorJFrame master;
-
+    public int currentPage = 0;
     Vector<JPanel> contents;
 
     public ContentJPanel(GameMonitorJFrame master) {
@@ -54,10 +54,8 @@ public class ContentJPanel extends AbstractCardJPanel {
         return hasPrev();
     }
 
-    public int currentPage = 0;
-
     public boolean hasNext() {
-        return currentPage < contents.size();
+        return currentPage + 1 < contents.size();
     }
 
     public boolean hasPrev() {

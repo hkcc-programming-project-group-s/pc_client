@@ -1,19 +1,19 @@
 package hkccpacman.gamemonitor.gui.frame;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 
 public class GameMonitorJFrame extends JFrame {
 
     int WINDOW_WIDTH = 960;
     int WINDOW_HEIGHT = 720;
+    LogoJPanel logoJPanel = new LogoJPanel();
+    ContentJPanel contentJPanel = new ContentJPanel(this);
+    ControlJPanel controlJPanel = new ControlJPanel(this);
 
     public GameMonitorJFrame() {
         initialize();
     }
-
     public GameMonitorJFrame(int width, int height) {
         WINDOW_WIDTH = width;
         WINDOW_HEIGHT = height;
@@ -31,10 +31,6 @@ public class GameMonitorJFrame extends JFrame {
         getContentPane().add(contentJPanel, BorderLayout.CENTER);
         getContentPane().add(controlJPanel, BorderLayout.SOUTH);
     }
-
-    LogoJPanel logoJPanel = new LogoJPanel();
-    ContentJPanel contentJPanel = new ContentJPanel(this);
-    ControlJPanel controlJPanel = new ControlJPanel(this);
 
     public void next() {
         contentJPanel.next();
@@ -58,6 +54,6 @@ public class GameMonitorJFrame extends JFrame {
     }
 
     public boolean canFinish() {
-        return !hasPrev();
+        return !hasNext();
     }
 }
