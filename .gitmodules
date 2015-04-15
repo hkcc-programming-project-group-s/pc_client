@@ -1,0 +1,3 @@
+[submodule "lib/myutils"]
+	path = lib/myutils
+	url = https://github.com/aabbcc1241/myutils.git
