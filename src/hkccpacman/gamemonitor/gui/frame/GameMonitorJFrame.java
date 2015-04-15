@@ -7,9 +7,16 @@ import java.awt.BorderLayout;
 
 public class GameMonitorJFrame extends JFrame {
 
-
+    int WINDOW_WIDTH = 960;
+    int WINDOW_HEIGHT = 720;
 
     public GameMonitorJFrame() {
+        initialize();
+    }
+
+    public GameMonitorJFrame(int width, int height) {
+        WINDOW_WIDTH = width;
+        WINDOW_HEIGHT = height;
         initialize();
     }
 
@@ -17,7 +24,7 @@ public class GameMonitorJFrame extends JFrame {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, WINDOW_WIDTH, WINDOW_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         getContentPane().add(logoJPanel, BorderLayout.NORTH);

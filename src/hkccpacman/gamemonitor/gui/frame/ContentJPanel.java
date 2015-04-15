@@ -13,17 +13,16 @@ public class ContentJPanel extends AbstractCardJPanel {
 
     private final GameMonitorJFrame master;
 
-    Vector<JPanel> contents = new Vector<>();
+    Vector<JPanel> contents;
 
-    /**
-     * Create the panel.
-     */
     public ContentJPanel(GameMonitorJFrame master) {
+        super();
         this.master = master;
     }
 
     @Override
     protected void myInit() {
+        contents = new Vector<>();
         contents.add(new SetDeviceName());
         contents.add(new SetDeviceInfo());
         contents.add(new PairControllerRobotJPanel());

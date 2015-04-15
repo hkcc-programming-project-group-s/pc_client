@@ -2,40 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="211e60c4-6347-4ccd-8a09-058981cd7a65" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitmodules" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hkccpacman/launcher/GameMonitorLauncher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/LogoJPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/myutils.xml" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pacmanrobot\Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\bin\pccontroller\Pc_controllerSetting.java.orig" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\frame\LogoJPanel.java" afterPath="" />
-      <change type="DELETED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\utils\WrapLayout.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/.gitignore" afterPath="$PROJECT_DIR$/bin/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PacmanRobot.iml" afterPath="$PROJECT_DIR$/PacmanRobot.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\CopyOfDeviceInfoPanel.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/CopyOfDeviceInfoPanel.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\DeviceInfoPanel_Old.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/DeviceInfoPanel_Old.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\DevicePairJPanel.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/DevicePairJPanel.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\GameMonitorContent.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/GameMonitorContent.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\MainWindow.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/MainWindow.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\PairControllerRobotFrame.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/PairControllerRobotJPanel.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\PositionSetting.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/PositionSetting.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\SetDeviceInfo.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/SetDeviceInfo.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\SetDeviceName.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/SetDeviceName.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\deviceinfo\DeviceInfo.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfo.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\deviceinfo\DeviceInfoContainer.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfoContainer.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\deviceinfo\DeviceInfoJPanel.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfoJPanel.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\content\deviceinfo\DeviceInfoJPanelHandler.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfoJPanelHandler.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\frame\ContentJPanel.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ContentJPanel.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\frame\ControlJPanel.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ControlJPanel.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\gamemonitor\gui\frame\GameMonitorLauncher.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\pacmanrobot\MyImages.java" afterPath="$PROJECT_DIR$/src/hkccpacman/utils/MyImages.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\pacmanrobot\Utils.java" afterPath="$PROJECT_DIR$/src/hkccpacman/utils/Utils.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\pccontroller\PauseInfo.java" afterPath="$PROJECT_DIR$/src/hkccpacman/pccontroller/PauseInfo.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\pccontroller\Pc_controllerSetting.java" afterPath="$PROJECT_DIR$/src/hkccpacman/pccontroller/Pc_controllerSetting.java" />
-      <change type="MOVED" beforePath="F:\tool\portableapps\PortableApps\GitPortable\Data\home\source\pc_client\src\pccontroller\Pc_controllerSetting.java.orig" afterPath="$PROJECT_DIR$/src/hkccpacman/pccontroller/Pc_controllerSetting.java.orig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ContentJPanel.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ContentJPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java" afterPath="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java" />
     </list>
     <ignored path="PacmanRobot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,18 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SetDeviceInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/SetDeviceInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PositionSetting.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/PositionSetting.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -91,20 +47,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameMonitorJFrame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameMonitorJFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.6732673">
+              <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceInfoContainer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DeviceInfoContainer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfoContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2019802">
+            <state vertical-scroll-proportion="0.0">
               <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
               <folding />
             </state>
@@ -149,11 +105,9 @@
         <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ContentJPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+              <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#613#614#0" expanded="true" />
-                <element signature="e#649#650#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/lib/myutils/src/java/myutils/gui/cardlayout/AbstractCardJPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -234,10 +188,11 @@
         <option value="$PROJECT_DIR$/src/gamemonitor/gui/frame/ContentJPanel.java" />
         <option value="$PROJECT_DIR$/src/hkccpacman/gui/frame/GameMonitorLauncher.java" />
         <option value="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorLauncher.java" />
-        <option value="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java" />
         <option value="$PROJECT_DIR$/src/hkccpacman/launcher/GameMonitorLauncher.java" />
         <option value="$PROJECT_DIR$/lib/myutils/src/java/webs/layout/WrapLayout.java" />
         <option value="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfoContainer.java" />
+        <option value="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ContentJPanel.java" />
+        <option value="$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java" />
       </list>
     </option>
   </component>
@@ -543,6 +498,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringCompactGrid.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PacmanRobot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pc_client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myutils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myutils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -903,13 +896,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfoJPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/DeviceInfoPanel_Old.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1232,26 +1218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/myutils/src/java/myutils/gui/cardlayout/AbstractCardJPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ContentJPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/awt/Container.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5555556">
@@ -1267,14 +1233,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1298,8 +1256,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/core/deviceinfo/DeviceInfoContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2019802">
+        <state vertical-scroll-proportion="0.0">
           <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/myutils/src/java/myutils/gui/cardlayout/AbstractCardJPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/ContentJPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../../CommonFiles/jdk1.8.0_40/jre/lib/rt.jar!/java/awt/image/ImageObserver.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23564357">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hkccpacman/gamemonitor/gui/frame/GameMonitorJFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6732673">
+          <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
           <folding />
         </state>
       </provider>
